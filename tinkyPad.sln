@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tinkyPad", "tinkyPad\tinkyPad.csproj", "{D21ECB16-92A8-4943-9320-660073E2953D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tinkyPad", "tinkyPad\tinkyPad.csproj", "{D21ECB16-92A8-4943-9320-660073E2953D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tinkyPadBL", "tinkyPadBL\tinkyPadBL.csproj", "{E5BEEB00-EE7E-45F6-8B7A-855AC94AF485}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tinkyPadBL", "tinkyPadBL\tinkyPadBL.csproj", "{E5BEEB00-EE7E-45F6-8B7A-855AC94AF485}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{57DDC976-C261-4F83-A798-AA3808D34C26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E5BEEB00-EE7E-45F6-8B7A-855AC94AF485}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5BEEB00-EE7E-45F6-8B7A-855AC94AF485}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5BEEB00-EE7E-45F6-8B7A-855AC94AF485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57DDC976-C261-4F83-A798-AA3808D34C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57DDC976-C261-4F83-A798-AA3808D34C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57DDC976-C261-4F83-A798-AA3808D34C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57DDC976-C261-4F83-A798-AA3808D34C26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

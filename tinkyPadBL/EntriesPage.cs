@@ -19,5 +19,10 @@ namespace tinkyPadBL
 
             _entries.Add(entry);
         }
+
+        public List<Entry> GetEntries()
+        {
+            return _entries;
+        }
     }
 }

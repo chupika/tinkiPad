@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace tinkyPadBL
 {
@@ -11,5 +9,10 @@ namespace tinkyPadBL
         public int ActivePageIndex { get; set; }
 
         public int ActiveTaskIndex { get; set; }
+
+        public List<Entry> GetActivePageEntries()
+        {
+            return EntriesPages[ActivePageIndex].GetEntries();
+        }
     }
 }

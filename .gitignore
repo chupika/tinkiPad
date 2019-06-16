@@ -73,3 +73,6 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+/.vs/tinkyPad/v16/Server/sqlite3
+/.vs/tinkyPad/DesignTimeBuild
+/.vs/tinkyPad/config

@@ -4,7 +4,7 @@ namespace BusinessLogic
 {
     public class Pad
     {
-        private List<EntriesPage> EntriesPages = new List<EntriesPage>();
+        private readonly List<EntriesPage> EntriesPages = new List<EntriesPage>();
 
         public int ActivePageIndex { get; set; }
 
@@ -13,6 +13,11 @@ namespace BusinessLogic
         public List<Entry> GetActivePageEntries()
         {
             return EntriesPages[ActivePageIndex].GetEntries();
+        }
+
+        public void AddEntry(Entry entry)
+        {
+            //
         }
     }
 }

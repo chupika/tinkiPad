@@ -12,7 +12,7 @@ namespace Tests.TestDB
         [TestMethod]
         public void CreateAndSaveEntries()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            using (var db = new ApplicationContext())
             {
                 var entry0 = new Entry { Caption = "Entry0", Addition = "Addition0" };
                 var entry1 = new Entry { Caption = "Entry1", Addition = "Addition1" };
@@ -26,6 +26,20 @@ namespace Tests.TestDB
                 foreach (var entry in entries)
                 {
                     Console.WriteLine($"{entry.Caption} - {entry.Addition}");
+                }
+            }
+        }
+
+        [TestMethod]
+        public void GetEntries()
+        {
+            using (var db = new ApplicationContext())
+            {
+                var entries = db.Entries.ToList();
+                Console.WriteLine("Entries list:");
+                foreach (var entry in entries)
+                {
+                    Console.WriteLine($"Caption: {entry.Caption}, Addition: {entry.Addition}, Id: {entry.Id}");
                 }
             }
         }

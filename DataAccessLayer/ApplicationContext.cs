@@ -5,7 +5,7 @@
 
     public class ApplicationContext : DbContext
     {
-        public DbSet<Entry> Entries { get; set; }
+        public DbSet<Pad> Pads { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

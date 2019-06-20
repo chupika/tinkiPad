@@ -13,8 +13,8 @@ namespace BusinessLogic
 
         public string Link { get; set; }
 
-        [NotMapped]
-        public HashSet<string> Tags { get; set; }
+        // check in setter, if we have such tag already
+        public List<string> Tags { get; set; }
 
         public bool IsDone { get; set; }
     }

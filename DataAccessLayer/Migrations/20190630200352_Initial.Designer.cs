@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190617184234_Initial")]
+    [Migration("20190630200352_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,22 +20,18 @@ namespace DataAccessLayer.Migrations
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("BusinessLogic.Entry", b =>
+            modelBuilder.Entity("BusinessLogic.Pad", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Addition");
+                    b.Property<int>("ActivePageIndex");
 
-                    b.Property<string>("Caption");
-
-                    b.Property<bool>("IsDone");
-
-                    b.Property<string>("Link");
+                    b.Property<int>("ActiveTaskIndex");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Entries");
+                    b.ToTable("Pads");
                 });
 #pragma warning restore 612, 618
         }

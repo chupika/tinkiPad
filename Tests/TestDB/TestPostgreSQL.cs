@@ -20,12 +20,14 @@ namespace Tests.TestDB
                 var pad = new Pad();
 
                 pad.AddEntry(entry0);
-                pad.AddEntry(entry0);
+                pad.AddEntry(entry1);
 
                 db.Pads.Add(pad);
                 db.SaveChanges();
 
                 var pads = db.Pads.ToList();
+                Assert.IsTrue(pads[0].Entries.Count >= 2);
+
                 Console.WriteLine("Entries list:");
                 foreach (var entry in pads[0].Entries)
                 {
@@ -48,6 +50,7 @@ namespace Tests.TestDB
                     return;
                 }
 
+                Console.WriteLine("Entries count: " + pads[0].Entries.Count);
                 Console.WriteLine("Entries list:");
                 foreach (var entry in pads[0].Entries)
                 {

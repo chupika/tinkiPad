@@ -17,5 +17,7 @@ namespace BusinessLogic
         public List<string> Tags { get; set; }
 
         public bool IsDone { get; set; }
+
+        public Pad Pad { get; set; }
     }
 }

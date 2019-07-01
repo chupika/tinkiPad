@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLogic
 {
@@ -6,7 +7,7 @@ namespace BusinessLogic
     {
         public const int EntryCapacity = 25;
 
-        public readonly List<Entry> Entries = new List<Entry>();
+        public ICollection<Entry> Entries { get; set; }
 
         public int Id { get; set; }
 
@@ -19,11 +20,16 @@ namespace BusinessLogic
         public List<Entry> GetActivePageEntries()
         {
             var offset = ActivePageIndex * EntryCapacity;
-            return Entries.GetRange(offset, EntryCapacity);
+            return Entries.ToList<Entry>().GetRange(offset, EntryCapacity);
         }
 
         public void AddEntry(Entry entry)
         {
+            if (Entries == null)
+            {
+                Entries = new List<Entry>();
+            }
+            entry.Pad = this;
             Entries.Add(entry);
         }
     }

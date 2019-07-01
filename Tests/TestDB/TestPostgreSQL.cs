@@ -12,7 +12,7 @@ namespace Tests.TestDB
         [TestMethod]
         public void CreateAndSaveEntries()
         {
-            using (var db = new ApplicationContext())
+            using (var contextSetData = new ApplicationContext())
             {
                 var entry0 = new Entry { Caption = "Entry0", Addition = "Addition0" };
                 var entry1 = new Entry { Caption = "Entry1", Addition = "Addition1" };
@@ -22,14 +22,19 @@ namespace Tests.TestDB
                 pad.AddEntry(entry0);
                 pad.AddEntry(entry1);
 
-                db.Pads.Add(pad);
-                db.SaveChanges();
+                contextSetData.Pads.Add(pad);
+                contextSetData.SaveChanges();
+            }
 
-                var pads = db.Pads.ToList();
-                Assert.IsTrue(pads[0].Entries.Count >= 2);
+            using (var contextGetData = new ApplicationContext())
+            {
+                var pads = contextGetData.Pads.ToList();
+                var entries = pads[0].Entries;
+                Assert.IsNotNull(entries, "Entries are null");
+                Assert.IsTrue(entries.Count >= 2, "Entries count " + entries.Count);
 
                 Console.WriteLine("Entries list:");
-                foreach (var entry in pads[0].Entries)
+                foreach (var entry in entries)
                 {
                     Console.WriteLine($"{entry.Caption} - {entry.Addition}");
                 }
@@ -50,6 +55,7 @@ namespace Tests.TestDB
                     return;
                 }
 
+                Assert.IsNotNull(pads[0].Entries);
                 Console.WriteLine("Entries count: " + pads[0].Entries.Count);
                 Console.WriteLine("Entries list:");
                 foreach (var entry in pads[0].Entries)

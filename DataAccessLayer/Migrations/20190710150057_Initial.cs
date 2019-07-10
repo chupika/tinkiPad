@@ -23,7 +23,7 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Entry",
+                name: "Entries",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -37,9 +37,9 @@ namespace DataAccessLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Entry", x => x.Id);
+                    table.PrimaryKey("PK_Entries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Entry_Pads_PadId",
+                        name: "FK_Entries_Pads_PadId",
                         column: x => x.PadId,
                         principalTable: "Pads",
                         principalColumn: "Id",
@@ -47,15 +47,15 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entry_PadId",
-                table: "Entry",
+                name: "IX_Entries_PadId",
+                table: "Entries",
                 column: "PadId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Entry");
+                name: "Entries");
 
             migrationBuilder.DropTable(
                 name: "Pads");

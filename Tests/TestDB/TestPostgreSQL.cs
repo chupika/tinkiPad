@@ -12,13 +12,13 @@ namespace Tests.TestDB
         [TestMethod]
         public void CreateAndSaveEntries()
         {
+            var entry0 = new Entry { Caption = "Entry0", Addition = "Addition0" };
+            var entry1 = new Entry { Caption = "Entry1", Addition = "Addition1" };
+
+            var pad = new Pad();
+
             using (var contextSetData = new ApplicationContext())
             {
-                var entry0 = new Entry { Caption = "Entry0", Addition = "Addition0" };
-                var entry1 = new Entry { Caption = "Entry1", Addition = "Addition1" };
-
-                var pad = new Pad();
-
                 pad.AddEntry(entry0);
                 pad.AddEntry(entry1);
 
@@ -28,8 +28,7 @@ namespace Tests.TestDB
 
             using (var contextGetData = new ApplicationContext())
             {
-                var pads = contextGetData.Pads.ToList();
-                var entries = pads[0].Entries;
+                var entries = contextGetData.Entries.Where(entry => entry.Pad.Id == pad.Id).ToList();
                 Assert.IsNotNull(entries, "Entries are null");
                 Assert.IsTrue(entries.Count >= 2, "Entries count " + entries.Count);
 
@@ -55,10 +54,12 @@ namespace Tests.TestDB
                     return;
                 }
 
-                Assert.IsNotNull(pads[0].Entries);
-                Console.WriteLine("Entries count: " + pads[0].Entries.Count);
+                var entries = db.Entries.ToList();
+
+                Assert.IsNotNull(entries);
+                Console.WriteLine("Entries count: " + entries.Count);
                 Console.WriteLine("Entries list:");
-                foreach (var entry in pads[0].Entries)
+                foreach (var entry in entries)
                 {
                     Console.WriteLine($"Caption: {entry.Caption}, Addition: {entry.Addition}, Id: {entry.Id}");
                 }

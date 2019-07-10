@@ -41,7 +41,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("PadId");
 
-                    b.ToTable("Entry");
+                    b.ToTable("Entries");
                 });
 
             modelBuilder.Entity("BusinessLogic.Pad", b =>

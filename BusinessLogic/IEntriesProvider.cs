@@ -6,6 +6,9 @@ namespace BusinessLogic
 {
     interface IEntriesProvider
     {
-        List<Entry> GetActivePageEntries();
+        Entry GetCurrentEntry();
+        IEnumerable<Entry> GetEntries();
+        IEnumerable<Entry> GetActivePageEntries();
+        IEnumerable<Entry> GetEntriesFromPage(int pageIndex);
     }
 }

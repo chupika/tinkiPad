@@ -4,29 +4,41 @@ using System.Text;
 
 namespace BusinessLogic
 {
-    public class EntriesProvider : IEntriesProvider
+    public class PadManager
     {
-        public List<Entry> GetActivePageEntries()
+        private Pad _pad;
+
+        public PadManager(int padId)
+        {
+
+        }
+
+        public void InitializePad()
         {
             throw new NotImplementedException();
         }
 
-        public Entry GetCurrentEntry()
+        public void CompleteEntry()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Entry> GetEntries()
+        public void InterruptEntry()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Entry> GetEntriesFromPage(int pageIndex)
+        public void ChooseEntry()
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<Entry> IEntriesProvider.GetActivePageEntries()
+        public void TurnPage()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void KillPage()
         {
             throw new NotImplementedException();
         }

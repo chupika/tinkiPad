@@ -7,6 +7,11 @@ namespace BusinessLogic
     {
         public const int EntryCapacity = 25;
 
+        public Pad()
+        {
+            ActiveEntryIndex = -1;
+        }
+
         public ICollection<Entry> Entries { get; set; }
 
         public int Id { get; set; }
@@ -15,7 +20,7 @@ namespace BusinessLogic
         public int ActivePageIndex { get; set; }
 
         // check in setter, if we have not such task
-        public int ActiveTaskIndex { get; set; }
+        public int ActiveEntryIndex { get; set; }
 
         public void AddEntry(Entry entry)
         {
@@ -35,12 +40,12 @@ namespace BusinessLogic
 
         public Entry GetActiveEntry()
         {
-            if (ActiveTaskIndex == -1)
+            if (ActiveEntryIndex == -1)
             {
                 return null;
             }
 
-            return Entries.ElementAt(ActiveTaskIndex);
+            return Entries.ElementAt(ActiveEntryIndex);
         }
 
         public IEnumerable<Entry> GetActivePageEntries()
@@ -52,6 +57,11 @@ namespace BusinessLogic
         {
             var offset = pageIndex * EntryCapacity;
             return Entries.ToList().GetRange(offset, EntryCapacity);
+        }
+
+        public void ResetActiveTask()
+        {
+            ActiveEntryIndex = -1;
         }
     }
 }

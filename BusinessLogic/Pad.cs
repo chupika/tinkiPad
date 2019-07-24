@@ -48,11 +48,13 @@ namespace BusinessLogic
             return Entries.ElementAt(ActiveEntryIndex);
         }
 
+        // move to paginator
         public IEnumerable<Entry> GetActivePageEntries()
         {
             return GetEntriesFromPage(ActivePageIndex);
         }
 
+        // move to paginator
         public IEnumerable<Entry> GetEntriesFromPage(int pageIndex)
         {
             var offset = pageIndex * EntryCapacity;

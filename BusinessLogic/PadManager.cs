@@ -64,7 +64,7 @@ namespace BusinessLogic
             _pad.ActiveEntryIndex = entryToChooseIndex;
         }
 
-        public void NextActivePage()
+        public void TurnPage()
         {
             if (_pad.ActiveEntryIndex != -1)
             {
@@ -77,7 +77,10 @@ namespace BusinessLogic
 
         public void KillPage()
         {
-            throw new NotImplementedException();
+            // check if single page then throw
+
+            // check if at least one task have been selected and copmpleted or interrupred
+            // on this page turning then ok, else throw
         }
     }
 }

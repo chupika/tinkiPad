@@ -20,14 +20,41 @@ namespace BusinessLogic
             return _pad.Entries.ToList().GetRange(offset, Pad.EntryCapacity);
         }
 
-        public IEnumerable<Entry> GetNextPendingPageEntries()
+        public int GetNextPendingPageIndex()
         {
-            throw new NotImplementedException();
+            var nextPageIndex = _pad.ActivePageIndex + 1 % CountPages();
+
+            while (nextPageIndex != _pad.ActivePageIndex)
+	        {
+                var entriesFromNextPage = GetEntriesFromPage(nextPageIndex);
+                if (entriesFromNextPage.Any(entry => !entry.IsDone))
+                {
+                    return nextPageIndex;
+                }
+	        }
+
+            throw new InvalidOperationException("No other pages with pending tasks");
         }
 
-        public int CountPendingPage()
+        public int CountPendingPages()
         {
-            throw new NotImplementedException();
+            var countPendingPages = 0;
+
+            for (var pageIndex = 0; pageIndex < CountPages() - 1; pageIndex++)
+            {
+                var entriesFromNextPage = GetEntriesFromPage(nextPageIndex);
+                if (entriesFromNextPage.Any(entry => !entry.IsDone))
+                {
+                    countPendingPages++;
+                }
+
+                return countPendingPages;
+            }
+        }
+
+        public int CountPages()
+        {
+            return Math.Ceiling(_pad.Entries.Count() / Pad.EntryCapacity);
         }
     }
 }

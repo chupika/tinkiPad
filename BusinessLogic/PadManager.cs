@@ -7,11 +7,13 @@ namespace BusinessLogic
 {
     public class PadManager
     {
-        private Pad _pad;
+        private readonly Pad _pad;
+        private readonly Paginator _paginator;
 
         public PadManager(Pad pad)
         {
             _pad = pad;
+            _paginator = new Paginator(pad);
         }
 
         public void CompleteEntry()
@@ -71,8 +73,8 @@ namespace BusinessLogic
                 throw new InvalidOperationException("Cannot activate next page, because an active entry is in progress");
             }
 
-            // Check if page is not single. Consider completed tasks
-            throw new NotImplementedException();
+            var nextPageIndex = _paginator.GetNextPendingPageIndex();
+            _pad.ActivePageIndex = nextPageIndex;
         }
 
         public void KillPage()

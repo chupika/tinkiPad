@@ -31,8 +31,9 @@ namespace BusinessLogic
                 {
                     return nextPageIndex;
                 }
-	        }
+            }
 
+            // create custom exceptions
             throw new InvalidOperationException("No other pages with pending tasks");
         }
 

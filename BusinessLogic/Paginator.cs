@@ -43,19 +43,20 @@ namespace BusinessLogic
 
             for (var pageIndex = 0; pageIndex < CountPages() - 1; pageIndex++)
             {
-                var entriesFromNextPage = GetEntriesFromPage(nextPageIndex);
+                var entriesFromNextPage = GetEntriesFromPage(pageIndex);
                 if (entriesFromNextPage.Any(entry => !entry.IsDone))
                 {
                     countPendingPages++;
                 }
-
-                return countPendingPages;
             }
+
+            return countPendingPages;
         }
 
         public int CountPages()
         {
-            return Math.Ceiling(_pad.Entries.Count() / Pad.EntryCapacity);
+            var countPages = (double)_pad.Entries.Count() / Pad.EntryCapacity;
+            return (int)Math.Ceiling(countPages);
         }
     }
 }

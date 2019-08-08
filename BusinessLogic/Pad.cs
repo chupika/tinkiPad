@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BusinessLogic
@@ -21,6 +22,8 @@ namespace BusinessLogic
 
         // check in setter, if we have not such task
         public int ActiveEntryIndex { get; set; }
+
+        public bool TaskWasStartedThisTurn { get; set; }
 
         public void AddEntry(Entry entry)
         {
@@ -64,6 +67,19 @@ namespace BusinessLogic
         public void ResetActiveTask()
         {
             ActiveEntryIndex = -1;
+        }
+
+        public void ActivatePage(int nextPageIndex)
+        {
+            ActivePageIndex = nextPageIndex;
+            TaskWasStartedThisTurn = false;
+        }
+
+        public void StartEntry(Entry entryToChoose)
+        {
+            var entryToChooseIndex = Entries.ToList().IndexOf(entryToChoose);
+            ActiveEntryIndex = entryToChooseIndex;
+            TaskWasStartedThisTurn = true;
         }
     }
 }

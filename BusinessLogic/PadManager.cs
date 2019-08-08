@@ -62,8 +62,7 @@ namespace BusinessLogic
                 throw new InvalidOperationException("Cannot choose entry, because it's not in active page");
             }
 
-            var entryToChooseIndex = _pad.Entries.ToList().IndexOf(entryToChoose);
-            _pad.ActiveEntryIndex = entryToChooseIndex;
+            _pad.StartEntry(entryToChoose);
         }
 
         public void TurnPage()
@@ -74,15 +73,34 @@ namespace BusinessLogic
             }
 
             var nextPageIndex = _paginator.GetNextPendingPageIndex();
-            _pad.ActivePageIndex = nextPageIndex;
+            _pad.ActivatePage(nextPageIndex);
         }
 
         public void KillPage()
         {
-            // check if single page then throw
+            if (_pad.ActiveEntryIndex != -1)
+            {
+                throw new InvalidOperationException("Cannot kill page because a task is in progress");
+            }
 
-            // check if at least one task have been selected and copmpleted or interrupred
-            // on this page turning then ok, else throw
+            if (_paginator.CountPendingPages() <= 1)
+            {
+                throw new InvalidOperationException("Cannot kill single pending page");
+            }
+
+            if (_pad.TaskWasStartedThisTurn)
+            {
+                throw new InvalidOperationException("Cannot kill page that have been started this turn");
+            }
+
+            var tasksFromActivePage = _pad.GetActivePageEntries();
+
+            foreach(var task in tasksFromActivePage)
+            {
+                task.IsDone = true;
+            }
+
+            TurnPage();
         }
     }
 }

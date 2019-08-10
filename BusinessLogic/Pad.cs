@@ -11,6 +11,7 @@ namespace BusinessLogic
         public Pad()
         {
             ActiveEntryIndex = -1;
+            Entries = new List<Entry>();
         }
 
         public ICollection<Entry> Entries { get; set; }

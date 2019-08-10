@@ -72,6 +72,11 @@ namespace BusinessLogic
                 throw new InvalidOperationException("Cannot activate next page, because an active entry is in progress");
             }
 
+            if (_paginator.CountPendingPages() < 2)
+            {
+                throw new InvalidOperationException("Cannot activate next page, because pages amount is less than 2");
+            }
+
             var nextPageIndex = _paginator.GetNextPendingPageIndex();
             _pad.ActivatePage(nextPageIndex);
         }

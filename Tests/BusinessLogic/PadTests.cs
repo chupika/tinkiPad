@@ -45,5 +45,41 @@ namespace Tests.BusinessLogic
             pad.ResetActiveTask();
             Assert.IsNull(pad.GetActiveEntry());
         }
+
+        [TestMethod]
+        public void TaskWasStartedThisTurn_WhenTurnPage_ReturnsFalse()
+        {
+            var pad = GetFullPad();
+            var padManager = new PadManager(pad);
+
+            padManager.TurnPage();
+
+            Assert.IsFalse(pad.TaskWasStartedThisTurn);
+        }
+
+        [TestMethod]
+        public void TaskWasStartedThisTurn_WhenStartTask_ReturnsTrue()
+        {
+            var pad = GetFullPad();
+            var padManager = new PadManager(pad);
+
+            padManager.ChooseEntry(0);
+
+            Assert.IsFalse(pad.TaskWasStartedThisTurn);
+        }
+
+        private Pad GetFullPad()
+        {
+            var pad = new Pad();
+            const int totalCountEntries = 70;
+
+            for(var entryIndex = 0; entryIndex < totalCountEntries; entryIndex++)
+            {
+                var entry = new Entry();
+                pad.AddEntry(entry);
+            }
+
+            return pad;
+        }
     }
 }

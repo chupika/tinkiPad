@@ -63,9 +63,9 @@ namespace Tests.BusinessLogic
             var pad = GetFullPad();
             var padManager = new PadManager(pad);
 
-            padManager.ChooseEntry(0);
+            padManager.ChooseEntryByIndex(0);
 
-            Assert.IsFalse(pad.TaskWasStartedThisTurn);
+            Assert.IsTrue(pad.TaskWasStartedThisTurn);
         }
 
         private Pad GetFullPad()

@@ -46,23 +46,16 @@ namespace BusinessLogic
             _pad.AddEntry(entryContinue);
         }
 
-        public void ChooseEntry(int id)
+        public void ChooseEntry(Guid id)
         {
-            var entryToChoose = _pad.Entries.Single(entry => entry.Id == id);
-            
-            if (entryToChoose.IsDone)
-            {
-                throw new InvalidOperationException("Cannot choose entry, because it's done");
-            }
+            var entryToChoose = _pad.Entries.Single(entry => entry.GuidId == id);
+            StartEntry(entryToChoose);
+        }
 
-            var activePageEntries = _pad.GetActivePageEntries();
-
-            if (activePageEntries.Contains(entryToChoose))
-            {
-                throw new InvalidOperationException("Cannot choose entry, because it's not in active page");
-            }
-
-            _pad.StartEntry(entryToChoose);
+        public void ChooseEntryByIndex(int index)
+        {
+            var entryToChoose = _pad.Entries.ElementAt(index);
+            StartEntry(entryToChoose);
         }
 
         public void TurnPage()
@@ -106,6 +99,23 @@ namespace BusinessLogic
             }
 
             TurnPage();
+        }
+
+        private void StartEntry(Entry entry)
+        {
+            if (entry.IsDone)
+            {
+                throw new InvalidOperationException("Cannot choose entry, because it's done");
+            }
+
+            var activePageEntries = _pad.GetActivePageEntries();
+
+            if (!activePageEntries.Contains(entry))
+            {
+                throw new InvalidOperationException("Cannot choose entry, because it's not in active page");
+            }
+
+            _pad.StartEntry(entry);
         }
     }
 }

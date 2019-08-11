@@ -12,11 +12,15 @@ namespace BusinessLogic
         {
             ActiveEntryIndex = -1;
             Entries = new List<Entry>();
+            GuidId = Guid.NewGuid();
         }
 
         public ICollection<Entry> Entries { get; set; }
 
+        // remove one of id or guidid
         public int Id { get; set; }
+
+        public Guid GuidId { get; set; }
 
         // check in setter, if we have not such page
         public int ActivePageIndex { get; set; }

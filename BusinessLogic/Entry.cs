@@ -1,10 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BusinessLogic
 {
     public class Entry
     {
+        public Entry()
+        {
+            GuidId = Guid.NewGuid();
+        }
+
+        // remove one of id or guidid
         public int Id { get; set; }
+
+        public Guid GuidId { get; set; }
+
         public string Caption { get; set; }
 
         public string Addition { get; set; }

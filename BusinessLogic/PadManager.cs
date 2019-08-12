@@ -16,7 +16,7 @@ namespace BusinessLogic
             _paginator = new Paginator(pad);
         }
 
-        public void CompleteEntry()
+        public void CompleteTask()
         {
             var activeTask = _pad.GetActiveTask();
 
@@ -42,8 +42,8 @@ namespace BusinessLogic
 
             activeTask.IsDone = true;
             _pad.ResetActiveTask();
-            var taskContinue = activeTask.CopyEntry();
-            _pad.AddEntry(taskContinue);
+            var taskContinue = activeTask.CopyTask();
+            _pad.AddTask(taskContinue);
         }
 
         public void StartTaskById(Guid id)
@@ -108,14 +108,14 @@ namespace BusinessLogic
                 throw new InvalidOperationException("Cannot start task, because it's done");
             }
 
-            var activePageEntries = _pad.GetActivePageTasks();
+            var activePageTasks = _pad.GetActivePageTasks();
 
-            if (!activePageEntries.Contains(task))
+            if (!activePageTasks.Contains(task))
             {
                 throw new InvalidOperationException("Cannot start task, because it's not in active page");
             }
 
-            _pad.StartEntry(task);
+            _pad.StartTask(task);
         }
     }
 }

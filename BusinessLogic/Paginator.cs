@@ -44,7 +44,7 @@ namespace BusinessLogic
             for (var pageIndex = 0; pageIndex < CountPages() - 1; pageIndex++)
             {
                 var tasksFromNextPage = GetTasksFromPage(pageIndex);
-                if (tasksFromNextPage.Any(entry => !entry.IsDone))
+                if (tasksFromNextPage.Any(task => !task.IsDone))
                 {
                     countPendingPages++;
                 }

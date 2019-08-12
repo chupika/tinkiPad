@@ -29,7 +29,7 @@ namespace Tests.BusinessLogic
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(10)]
-        public void GetActiveTask_WhenActiveEntryIndexWasBeenSetInRangeOfTasksCount_ReturnNotNull(int activeEntryIndex)
+        public void GetActiveTask_WhenActiveTaskIndexWasBeenSetInRangeOfTasksCount_ReturnNotNull(int activeTaskIndex)
         {
             var pad = new Pad();
             pad.Tasks = new List<Task>
@@ -41,7 +41,7 @@ namespace Tests.BusinessLogic
                 new Task(),
             };
 
-            pad.ActiveTaskIndex = activeEntryIndex;
+            pad.ActiveTaskIndex = activeTaskIndex;
             pad.ResetActiveTask();
             Assert.IsNull(pad.GetActiveTask());
         }
@@ -71,12 +71,12 @@ namespace Tests.BusinessLogic
         private Pad GetFullPad()
         {
             var pad = new Pad();
-            const int totalCountEntries = 70;
+            const int totalCountTasks = 70;
 
-            for(var entryIndex = 0; entryIndex < totalCountEntries; entryIndex++)
+            for(var taskIndex = 0; taskIndex < totalCountTasks; taskIndex++)
             {
-                var entry = new Task();
-                pad.AddEntry(entry);
+                var task = new Task();
+                pad.AddTask(task);
             }
 
             return pad;

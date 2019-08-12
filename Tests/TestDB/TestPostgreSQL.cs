@@ -19,8 +19,8 @@ namespace Tests.TestDB
 
             using (var contextSetData = new ApplicationContext())
             {
-                pad.AddEntry(task0);
-                pad.AddEntry(task1);
+                pad.AddTask(task0);
+                pad.AddTask(task1);
 
                 contextSetData.Pads.Add(pad);
                 contextSetData.SaveChanges();
@@ -32,7 +32,7 @@ namespace Tests.TestDB
                 Assert.IsNotNull(tasks, "Tasks are null");
                 Assert.IsTrue(tasks.Count >= 2, "Tasks count " + tasks.Count);
 
-                Console.WriteLine("Entries list:");
+                Console.WriteLine("Tasks list:");
                 foreach (var task in tasks)
                 {
                     Console.WriteLine($"{task.Caption} - {task.Addition}");

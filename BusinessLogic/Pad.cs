@@ -30,15 +30,15 @@ namespace BusinessLogic
 
         public bool TaskWasStartedThisTurn { get; set; }
 
-        public void AddEntry(Task entry)
+        public void AddTask(Task task)
         {
             if (Tasks == null)
             {
                 Tasks = new List<Task>();
             }
 
-            entry.Pad = this;
-            Tasks.Add(entry);
+            task.Pad = this;
+            Tasks.Add(task);
         }
 
         public IEnumerable<Task> GetTasks()
@@ -80,10 +80,10 @@ namespace BusinessLogic
             TaskWasStartedThisTurn = false;
         }
 
-        public void StartEntry(Task taskToChoose)
+        public void StartTask(Task taskToChoose)
         {
-            var entryToChooseIndex = Tasks.ToList().IndexOf(taskToChoose);
-            ActiveTaskIndex = entryToChooseIndex;
+            var taskToChooseIndex = Tasks.ToList().IndexOf(taskToChoose);
+            ActiveTaskIndex = taskToChooseIndex;
             TaskWasStartedThisTurn = true;
         }
     }

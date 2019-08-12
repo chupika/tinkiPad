@@ -28,9 +28,9 @@ namespace BusinessLogic
 
         public Pad Pad { get; set; }
 
-        public Task CopyEntry()
+        public Task CopyTask()
         {
-            var entryCopy = new Task
+            var taskCopy = new Task
             {
                 Caption = Caption,
                 Addition = Addition,
@@ -38,13 +38,13 @@ namespace BusinessLogic
                 Pad = Pad
             };
 
-            entryCopy.Tags = new List<string>();
+            taskCopy.Tags = new List<string>();
             foreach(var tag in Tags)
             {
-                entryCopy.Tags.Add(tag);
+                taskCopy.Tags.Add(tag);
             }
 
-            return entryCopy;
+            return taskCopy;
         }
     }
 }

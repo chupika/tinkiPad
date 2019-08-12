@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace BusinessLogic
 {
-    public class Entry
+    public class Task
     {
-        public Entry()
+        public Task()
         {
             GuidId = Guid.NewGuid();
         }
@@ -28,9 +28,9 @@ namespace BusinessLogic
 
         public Pad Pad { get; set; }
 
-        public Entry CopyEntry()
+        public Task CopyEntry()
         {
-            var entryCopy = new Entry
+            var entryCopy = new Task
             {
                 Caption = Caption,
                 Addition = Addition,

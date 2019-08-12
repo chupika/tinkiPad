@@ -10,17 +10,17 @@ namespace Tests.TestDB
     public class TestPostgreSQL
     {
         [TestMethod]
-        public void CreateAndSaveEntries()
+        public void CreateAndSaveTasks()
         {
-            var entry0 = new Entry { Caption = "Entry0", Addition = "Addition0" };
-            var entry1 = new Entry { Caption = "Entry1", Addition = "Addition1" };
+            var task0 = new Task { Caption = "Task0", Addition = "Addition0" };
+            var task1 = new Task { Caption = "Task1", Addition = "Addition1" };
 
             var pad = new Pad();
 
             using (var contextSetData = new ApplicationContext())
             {
-                pad.AddEntry(entry0);
-                pad.AddEntry(entry1);
+                pad.AddEntry(task0);
+                pad.AddEntry(task1);
 
                 contextSetData.Pads.Add(pad);
                 contextSetData.SaveChanges();
@@ -28,20 +28,20 @@ namespace Tests.TestDB
 
             using (var contextGetData = new ApplicationContext())
             {
-                var entries = contextGetData.Entries.Where(entry => entry.Pad.Id == pad.Id).ToList();
-                Assert.IsNotNull(entries, "Entries are null");
-                Assert.IsTrue(entries.Count >= 2, "Entries count " + entries.Count);
+                var tasks = contextGetData.Tasks.Where(task => task.Pad.Id == pad.Id).ToList();
+                Assert.IsNotNull(tasks, "Tasks are null");
+                Assert.IsTrue(tasks.Count >= 2, "Tasks count " + tasks.Count);
 
                 Console.WriteLine("Entries list:");
-                foreach (var entry in entries)
+                foreach (var task in tasks)
                 {
-                    Console.WriteLine($"{entry.Caption} - {entry.Addition}");
+                    Console.WriteLine($"{task.Caption} - {task.Addition}");
                 }
             }
         }
 
         [TestMethod]
-        public void GetEntries()
+        public void GetTask()
         {
             using (var db = new ApplicationContext())
             {
@@ -54,14 +54,14 @@ namespace Tests.TestDB
                     return;
                 }
 
-                var entries = db.Entries.ToList();
+                var tasks = db.Tasks.ToList();
 
-                Assert.IsNotNull(entries);
-                Console.WriteLine("Entries count: " + entries.Count);
-                Console.WriteLine("Entries list:");
-                foreach (var entry in entries)
+                Assert.IsNotNull(tasks);
+                Console.WriteLine("Tasks count: " + tasks.Count);
+                Console.WriteLine("Tasks list:");
+                foreach (var task in tasks)
                 {
-                    Console.WriteLine($"Caption: {entry.Caption}, Addition: {entry.Addition}, Id: {entry.Id}");
+                    Console.WriteLine($"Caption: {task.Caption}, Addition: {task.Addition}, Id: {task.Id}");
                 }
             }
         }

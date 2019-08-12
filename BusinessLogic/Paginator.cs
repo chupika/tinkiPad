@@ -14,10 +14,10 @@ namespace BusinessLogic
             _pad = pad;
         }
 
-        public IEnumerable<Entry> GetEntriesFromPage(int pageIndex)
+        public IEnumerable<Task> GetTasksFromPage(int pageIndex)
         {
-            var offset = pageIndex * Pad.EntryCapacity;
-            return _pad.Entries.ToList().GetRange(offset, Pad.EntryCapacity);
+            var offset = pageIndex * Pad.TasksCapacity;
+            return _pad.Tasks.ToList().GetRange(offset, Pad.TasksCapacity);
         }
 
         public int GetNextPendingPageIndex()
@@ -26,8 +26,8 @@ namespace BusinessLogic
 
             while (nextPageIndex != _pad.ActivePageIndex)
 	        {
-                var entriesFromNextPage = GetEntriesFromPage(nextPageIndex);
-                if (entriesFromNextPage.Any(entry => !entry.IsDone))
+                var tasksFromNextPage = GetTasksFromPage(nextPageIndex);
+                if (tasksFromNextPage.Any(task => !task.IsDone))
                 {
                     return nextPageIndex;
                 }
@@ -43,8 +43,8 @@ namespace BusinessLogic
 
             for (var pageIndex = 0; pageIndex < CountPages() - 1; pageIndex++)
             {
-                var entriesFromNextPage = GetEntriesFromPage(pageIndex);
-                if (entriesFromNextPage.Any(entry => !entry.IsDone))
+                var tasksFromNextPage = GetTasksFromPage(pageIndex);
+                if (tasksFromNextPage.Any(entry => !entry.IsDone))
                 {
                     countPendingPages++;
                 }
@@ -55,7 +55,7 @@ namespace BusinessLogic
 
         public int CountPages()
         {
-            var countPages = (double)_pad.Entries.Count() / Pad.EntryCapacity;
+            var countPages = (double)_pad.Tasks.Count() / Pad.TasksCapacity;
             return (int)Math.Ceiling(countPages);
         }
     }

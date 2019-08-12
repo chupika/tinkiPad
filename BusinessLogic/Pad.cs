@@ -4,18 +4,18 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class Pad : IEntriesProvider
+    public class Pad : ITasksProvider
     {
-        public const int EntryCapacity = 25;
+        public const int TasksCapacity = 25;
 
         public Pad()
         {
-            ActiveEntryIndex = -1;
-            Entries = new List<Entry>();
+            ActiveTaskIndex = -1;
+            Tasks = new List<Task>();
             GuidId = Guid.NewGuid();
         }
 
-        public ICollection<Entry> Entries { get; set; }
+        public ICollection<Task> Tasks { get; set; }
 
         // remove one of id or guidid
         public int Id { get; set; }
@@ -26,52 +26,52 @@ namespace BusinessLogic
         public int ActivePageIndex { get; set; }
 
         // check in setter, if we have not such task
-        public int ActiveEntryIndex { get; set; }
+        public int ActiveTaskIndex { get; set; }
 
         public bool TaskWasStartedThisTurn { get; set; }
 
-        public void AddEntry(Entry entry)
+        public void AddEntry(Task entry)
         {
-            if (Entries == null)
+            if (Tasks == null)
             {
-                Entries = new List<Entry>();
+                Tasks = new List<Task>();
             }
 
             entry.Pad = this;
-            Entries.Add(entry);
+            Tasks.Add(entry);
         }
 
-        public IEnumerable<Entry> GetEntries()
+        public IEnumerable<Task> GetTasks()
         {
-            return Entries.ToList();
+            return Tasks.ToList();
         }
 
-        public Entry GetActiveEntry()
+        public Task GetActiveTask()
         {
-            if (ActiveEntryIndex == -1)
+            if (ActiveTaskIndex == -1)
             {
                 return null;
             }
 
-            return Entries.ElementAt(ActiveEntryIndex);
+            return Tasks.ElementAt(ActiveTaskIndex);
         }
 
         // move to paginator
-        public IEnumerable<Entry> GetActivePageEntries()
+        public IEnumerable<Task> GetActivePageTasks()
         {
-            return GetEntriesFromPage(ActivePageIndex);
+            return GetTasksFromPage(ActivePageIndex);
         }
 
         // move to paginator
-        public IEnumerable<Entry> GetEntriesFromPage(int pageIndex)
+        public IEnumerable<Task> GetTasksFromPage(int pageIndex)
         {
-            var offset = pageIndex * EntryCapacity;
-            return Entries.ToList().GetRange(offset, EntryCapacity);
+            var offset = pageIndex * TasksCapacity;
+            return Tasks.ToList().GetRange(offset, TasksCapacity);
         }
 
         public void ResetActiveTask()
         {
-            ActiveEntryIndex = -1;
+            ActiveTaskIndex = -1;
         }
 
         public void ActivatePage(int nextPageIndex)
@@ -80,10 +80,10 @@ namespace BusinessLogic
             TaskWasStartedThisTurn = false;
         }
 
-        public void StartEntry(Entry entryToChoose)
+        public void StartEntry(Task taskToChoose)
         {
-            var entryToChooseIndex = Entries.ToList().IndexOf(entryToChoose);
-            ActiveEntryIndex = entryToChooseIndex;
+            var entryToChooseIndex = Tasks.ToList().IndexOf(taskToChoose);
+            ActiveTaskIndex = entryToChooseIndex;
             TaskWasStartedThisTurn = true;
         }
     }

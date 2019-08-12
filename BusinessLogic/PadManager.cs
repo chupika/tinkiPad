@@ -18,51 +18,51 @@ namespace BusinessLogic
 
         public void CompleteEntry()
         {
-            var activeEntry = _pad.GetActiveEntry();
+            var activeTask = _pad.GetActiveTask();
 
-            if (activeEntry == null)
+            if (activeTask == null)
             {
                 // probably should throw exception instead
                 return;
             }
 
-            activeEntry.IsDone = true;
+            activeTask.IsDone = true;
             _pad.ResetActiveTask();
         }
 
-        public void InterruptEntry()
+        public void InterruptTask()
         {
-            var activeEntry = _pad.GetActiveEntry();
+            var activeTask = _pad.GetActiveTask();
 
-            if (activeEntry == null)
+            if (activeTask == null)
             {
                 // probably should throw exception instead
                 return;
             }
 
-            activeEntry.IsDone = true;
+            activeTask.IsDone = true;
             _pad.ResetActiveTask();
-            var entryContinue = activeEntry.CopyEntry();
-            _pad.AddEntry(entryContinue);
+            var taskContinue = activeTask.CopyEntry();
+            _pad.AddEntry(taskContinue);
         }
 
-        public void ChooseEntry(Guid id)
+        public void StartTaskById(Guid id)
         {
-            var entryToChoose = _pad.Entries.Single(entry => entry.GuidId == id);
-            StartEntry(entryToChoose);
+            var taskToStart = _pad.Tasks.Single(task => task.GuidId == id);
+            StartTask(taskToStart);
         }
 
-        public void ChooseEntryByIndex(int index)
+        public void StartTaskByIndex(int index)
         {
-            var entryToChoose = _pad.Entries.ElementAt(index);
-            StartEntry(entryToChoose);
+            var taskToStart = _pad.Tasks.ElementAt(index);
+            StartTask(taskToStart);
         }
 
         public void TurnPage()
         {
-            if (_pad.ActiveEntryIndex != -1)
+            if (_pad.ActiveTaskIndex != -1)
             {
-                throw new InvalidOperationException("Cannot activate next page, because an active entry is in progress");
+                throw new InvalidOperationException("Cannot activate next page, because an active task is in progress");
             }
 
             if (_paginator.CountPendingPages() < 2)
@@ -76,7 +76,7 @@ namespace BusinessLogic
 
         public void KillPage()
         {
-            if (_pad.ActiveEntryIndex != -1)
+            if (_pad.ActiveTaskIndex != -1)
             {
                 throw new InvalidOperationException("Cannot kill page because a task is in progress");
             }
@@ -91,7 +91,7 @@ namespace BusinessLogic
                 throw new InvalidOperationException("Cannot kill page that have been started this turn");
             }
 
-            var tasksFromActivePage = _pad.GetActivePageEntries();
+            var tasksFromActivePage = _pad.GetActivePageTasks();
 
             foreach(var task in tasksFromActivePage)
             {
@@ -101,21 +101,21 @@ namespace BusinessLogic
             TurnPage();
         }
 
-        private void StartEntry(Entry entry)
+        private void StartTask(Task task)
         {
-            if (entry.IsDone)
+            if (task.IsDone)
             {
-                throw new InvalidOperationException("Cannot choose entry, because it's done");
+                throw new InvalidOperationException("Cannot start task, because it's done");
             }
 
-            var activePageEntries = _pad.GetActivePageEntries();
+            var activePageEntries = _pad.GetActivePageTasks();
 
-            if (!activePageEntries.Contains(entry))
+            if (!activePageEntries.Contains(task))
             {
-                throw new InvalidOperationException("Cannot choose entry, because it's not in active page");
+                throw new InvalidOperationException("Cannot start task, because it's not in active page");
             }
 
-            _pad.StartEntry(entry);
+            _pad.StartEntry(task);
         }
     }
 }

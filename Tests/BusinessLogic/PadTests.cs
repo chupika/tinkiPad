@@ -8,42 +8,42 @@ namespace Tests.BusinessLogic
     public class PadTests
     {
         [TestMethod]
-        public void GetActiveEntry_WhenActiveIndexWasBeenReseted_ReturnNull()
+        public void GetActiveTask_WhenActiveIndexWasBeenReseted_ReturnNull()
         {
             var pad = new Pad();
-            pad.Entries = new List<Entry>
+            pad.Tasks = new List<Task>
             {
-                new Entry(),
-                new Entry(),
-                new Entry(),
-                new Entry(),
-                new Entry(),
+                new Task(),
+                new Task(),
+                new Task(),
+                new Task(),
+                new Task(),
             };
 
-            pad.ActiveEntryIndex = 3;
+            pad.ActiveTaskIndex = 3;
             pad.ResetActiveTask();
-            Assert.IsNull(pad.GetActiveEntry());
+            Assert.IsNull(pad.GetActiveTask());
         }
 
         [DataTestMethod]
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(10)]
-        public void GetActiveEntry_WhenActiveEntryIndexWasBeenSetInRangeOfEntriesCount_ReturnNotNull(int activeEntryIndex)
+        public void GetActiveTask_WhenActiveEntryIndexWasBeenSetInRangeOfTasksCount_ReturnNotNull(int activeEntryIndex)
         {
             var pad = new Pad();
-            pad.Entries = new List<Entry>
+            pad.Tasks = new List<Task>
             {
-                new Entry(),
-                new Entry(),
-                new Entry(),
-                new Entry(),
-                new Entry(),
+                new Task(),
+                new Task(),
+                new Task(),
+                new Task(),
+                new Task(),
             };
 
-            pad.ActiveEntryIndex = activeEntryIndex;
+            pad.ActiveTaskIndex = activeEntryIndex;
             pad.ResetActiveTask();
-            Assert.IsNull(pad.GetActiveEntry());
+            Assert.IsNull(pad.GetActiveTask());
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace Tests.BusinessLogic
             var pad = GetFullPad();
             var padManager = new PadManager(pad);
 
-            padManager.ChooseEntryByIndex(0);
+            padManager.StartTaskByIndex(0);
 
             Assert.IsTrue(pad.TaskWasStartedThisTurn);
         }
@@ -75,7 +75,7 @@ namespace Tests.BusinessLogic
 
             for(var entryIndex = 0; entryIndex < totalCountEntries; entryIndex++)
             {
-                var entry = new Entry();
+                var entry = new Task();
                 pad.AddEntry(entry);
             }
 

@@ -68,6 +68,17 @@ namespace Tests.BusinessLogic
             Assert.IsTrue(pad.TaskWasStartedThisTurn);
         }
 
+        [TestMethod]
+        public void WhenStartTask_ThenActiveTaskIndexReturnsIndexThisTask()
+        {
+            var pad = GetFullPad();
+            var taskIndex = 5;
+
+            pad.StartTaskByIndex(taskIndex);
+
+            Assert.AreEqual(pad.ActiveTaskIndex, taskIndex);
+        }
+
         private Pad GetFullPad()
         {
             var pad = new Pad();

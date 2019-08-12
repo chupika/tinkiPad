@@ -80,10 +80,16 @@ namespace BusinessLogic
             TaskWasStartedThisTurn = false;
         }
 
+        //probably remove or replace by StartTaskById
         public void StartTask(Task taskToChoose)
         {
-            var taskToChooseIndex = Tasks.ToList().IndexOf(taskToChoose);
-            ActiveTaskIndex = taskToChooseIndex;
+            var taskToStartIndex = Tasks.ToList().IndexOf(taskToChoose);
+            StartTaskByIndex(taskToStartIndex);
+        }
+
+        public void StartTaskByIndex(int taskIndex)
+        {
+            ActiveTaskIndex = taskIndex;
             TaskWasStartedThisTurn = true;
         }
     }

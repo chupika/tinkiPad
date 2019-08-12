@@ -61,9 +61,8 @@ namespace Tests.BusinessLogic
         public void TaskWasStartedThisTurn_WhenStartTask_ReturnsTrue()
         {
             var pad = GetFullPad();
-            var padManager = new PadManager(pad);
 
-            padManager.StartTaskByIndex(0);
+            pad.StartTaskByIndex(0);
 
             Assert.IsTrue(pad.TaskWasStartedThisTurn);
         }

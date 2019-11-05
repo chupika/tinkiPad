@@ -46,9 +46,9 @@ namespace BusinessLogic
             _pad.AddTask(taskContinue);
         }
 
-        public void StartTaskById(Guid id)
+        public void StartTaskById(int id)
         {
-            var taskToStart = _pad.Tasks.Single(task => task.GuidId == id);
+            var taskToStart = _pad.Tasks.Single(task => task.Id == id);
             StartTask(taskToStart);
         }
 

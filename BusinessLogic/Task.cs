@@ -5,15 +5,7 @@ namespace BusinessLogic
 {
     public class Task
     {
-        public Task()
-        {
-            GuidId = Guid.NewGuid();
-        }
-
-        // remove one of id or guidid
         public int Id { get; set; }
-
-        public Guid GuidId { get; set; }
 
         public string Caption { get; set; }
 

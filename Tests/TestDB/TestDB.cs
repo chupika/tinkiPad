@@ -7,7 +7,7 @@ using System.Linq;
 namespace Tests.TestDB
 {
     [TestClass]
-    public class TestPostgreSQL
+    public class TestDB
     {
         [TestMethod]
         public void CreateAndSaveTasks()

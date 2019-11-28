@@ -10,7 +10,7 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=padsdb;Username=postgres;Password=");
+            optionsBuilder.UseMySql("server=localhost;UserId=root;Password=123456;database=tinky1;");
         }
     }
 }

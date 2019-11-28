@@ -13,9 +13,6 @@ namespace BusinessLogic
 
         public string Link { get; set; }
 
-        // check in setter, if we have such tag already
-        public List<string> Tags { get; set; }
-
         public bool IsDone { get; set; }
 
         public Pad Pad { get; set; }
@@ -29,12 +26,6 @@ namespace BusinessLogic
                 Link = Link,
                 Pad = Pad
             };
-
-            taskCopy.Tags = new List<string>();
-            foreach(var tag in Tags)
-            {
-                taskCopy.Tags.Add(tag);
-            }
 
             return taskCopy;
         }

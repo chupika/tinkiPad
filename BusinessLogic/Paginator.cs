@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BusinessLogic
 {
-    class Paginator
+    public class Paginator
     {
         private readonly Pad _pad;
 

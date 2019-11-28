@@ -49,7 +49,7 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void TaskWasStartedThisTurn_WhenTurnPage_ReturnsFalse()
         {
-            var pad = GetFullPad();
+            var pad = PadFiller.GetFullPad();
             var padManager = new PadManager(pad);
 
             padManager.TurnPage();
@@ -60,7 +60,7 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void TaskWasStartedThisTurn_WhenStartTask_ReturnsTrue()
         {
-            var pad = GetFullPad();
+            var pad = PadFiller.GetFullPad();
 
             pad.StartTaskByIndex(0);
 
@@ -70,26 +70,12 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void WhenStartTask_ThenActiveTaskIndexReturnsIndexThisTask()
         {
-            var pad = GetFullPad();
+            var pad = PadFiller.GetFullPad();
             var taskIndex = 5;
 
             pad.StartTaskByIndex(taskIndex);
 
             Assert.AreEqual(pad.ActiveTaskIndex, taskIndex);
-        }
-
-        private Pad GetFullPad()
-        {
-            var pad = new Pad();
-            const int totalCountTasks = 70;
-
-            for(var taskIndex = 0; taskIndex < totalCountTasks; taskIndex++)
-            {
-                var task = new Task();
-                pad.AddTask(task);
-            }
-
-            return pad;
         }
     }
 }

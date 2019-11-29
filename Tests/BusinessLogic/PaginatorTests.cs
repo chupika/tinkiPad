@@ -10,7 +10,7 @@ namespace Tests.BusinessLogic
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(3)]
-        public void GetTaskFromPage_WhenPadContainsIndexPage_ReturnsTasksFromThatPage(int pageIndex)
+        public void GetTasksFromPage_WhenPadContainsIndexPage_ReturnsTasksFromThatPage(int pageIndex)
         {
             var pad = PadFiller.GetFullPad();
             var paginator = new Paginator(pad);

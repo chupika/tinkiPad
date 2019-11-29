@@ -15,13 +15,15 @@ namespace Tests.BusinessLogic
             var pad = PadFiller.GetFullPad();
             var paginator = new Paginator(pad);
             var tasksFromPage = paginator.GetTasksFromPage(pageIndex).ToList();
-
-            foreach(var task in tasksFromPage)
+            var allTasks = pad.GetTasks().ToList();
+            foreach (var task in tasksFromPage)
             {
-                var taskIndex = tasksFromPage.IndexOf(task);
+                var taskIndex = allTasks.IndexOf(task);
                 var expectedPageIndex = taskIndex / Pad.TasksCapacity;
                 Assert.Equal(pageIndex, expectedPageIndex);
             }
         }
+
+
     }
 }

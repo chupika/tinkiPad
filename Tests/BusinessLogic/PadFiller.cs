@@ -4,12 +4,11 @@ namespace Tests.BusinessLogic
 {
     internal class PadFiller
     {
-        public static Pad GetFullPad()
+        public static Pad GetFullPad(int totalTasksCount = 100)
         {
             var pad = new Pad();
-            const int totalCountTasks = 100;
 
-            for (var taskIndex = 0; taskIndex < totalCountTasks; taskIndex++)
+            for (var taskIndex = 0; taskIndex < totalTasksCount; taskIndex++)
             {
                 var task = new Task();
                 task.Caption = $"Task number: {taskIndex}";

@@ -91,7 +91,7 @@ namespace BusinessLogic
                 throw new InvalidOperationException("Cannot kill page that have been started this turn");
             }
 
-            var tasksFromActivePage = _pad.GetActivePageTasks();
+            var tasksFromActivePage = _paginator.GetTasksFromActivePage();
 
             foreach(var task in tasksFromActivePage)
             {
@@ -108,7 +108,7 @@ namespace BusinessLogic
                 throw new InvalidOperationException("Cannot start task, because it's done");
             }
 
-            var activePageTasks = _pad.GetActivePageTasks();
+            var activePageTasks = _paginator.GetTasksFromActivePage();
 
             if (!activePageTasks.Contains(task))
             {

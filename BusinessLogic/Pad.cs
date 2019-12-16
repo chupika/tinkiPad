@@ -4,10 +4,8 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class Pad : ITasksProvider
+    public class Pad
     {
-        public const int TasksCapacity = 25;
-
         public Pad()
         {
             ActiveTaskIndex = -1;
@@ -50,19 +48,6 @@ namespace BusinessLogic
             }
 
             return Tasks.ElementAt(ActiveTaskIndex);
-        }
-
-        // move to paginator
-        public IEnumerable<Task> GetActivePageTasks()
-        {
-            return GetTasksFromPage(ActivePageIndex);
-        }
-
-        // move to paginator
-        public IEnumerable<Task> GetTasksFromPage(int pageIndex)
-        {
-            var offset = pageIndex * TasksCapacity;
-            return Tasks.ToList().GetRange(offset, TasksCapacity);
         }
 
         public void ResetActiveTask()

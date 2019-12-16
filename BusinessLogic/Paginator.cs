@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BusinessLogic
 {
@@ -12,12 +11,26 @@ namespace BusinessLogic
         public Paginator(Pad pad)
         {
             _pad = pad;
+            TasksCapacity = 25;
         }
+
+        public int TasksCapacity { get; set; }
 
         public IEnumerable<Task> GetTasksFromPage(int pageIndex)
         {
-            var offset = pageIndex * Pad.TasksCapacity;
-            return _pad.Tasks.ToList().GetRange(offset, Pad.TasksCapacity);
+            var offset = pageIndex * TasksCapacity;
+            return _pad.Tasks.ToList().GetRange(offset, TasksCapacity);
+        }
+
+        public IEnumerable<Task> GetTasksFromActivePage()
+        {
+            if (_pad.ActivePageIndex == -1)
+            {
+                return new List<Task>();
+            }
+
+            var tasksFromActivePage = GetTasksFromPage(_pad.ActivePageIndex);
+            return tasksFromActivePage;
         }
 
         public int GetNextPendingPageIndex()
@@ -58,7 +71,7 @@ namespace BusinessLogic
 
         public int CountPages()
         {
-            var countPages = (double)_pad.Tasks.Count() / Pad.TasksCapacity;
+            var countPages = (double)_pad.Tasks.Count() / TasksCapacity;
             return (int)Math.Ceiling(countPages);
         }
     }

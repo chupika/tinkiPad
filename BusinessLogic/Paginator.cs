@@ -22,7 +22,8 @@ namespace BusinessLogic
 
         public int GetNextPendingPageIndex()
         {
-            var nextPageIndex = _pad.ActivePageIndex + 1 % CountPages();
+            var countPages = CountPages();
+            var nextPageIndex = _pad.ActivePageIndex + 1 % countPages;
 
             while (nextPageIndex != _pad.ActivePageIndex)
 	        {
@@ -31,6 +32,8 @@ namespace BusinessLogic
                 {
                     return nextPageIndex;
                 }
+
+                nextPageIndex = (nextPageIndex + 1) % countPages;
             }
 
             // create custom exceptions

@@ -54,7 +54,7 @@ namespace Tests.BusinessLogic
             (int activePageIndex, int undoneTaskPageIndex, int undoneTaskIndex, int tasksCapacity)
         {
             var pad = PadFiller.GetFullPad();
-            var tasks = pad.GetTasks().ToList();
+            var tasks = pad.GetTasks();
 
             for (var taskIndex = 0; taskIndex < tasks.Count(); taskIndex++)
             {
@@ -67,6 +67,30 @@ namespace Tests.BusinessLogic
             var nextPendingPage = paginator.GetNextPendingPageIndex();
 
             Assert.Equal(undoneTaskPageIndex, nextPendingPage);
+        }
+
+        [Theory]
+        [InlineData(1, 0, 25, 25)]
+        [InlineData(1, 25, 26, 25)]
+        [InlineData(2, 10, 30, 25)]
+        [InlineData(3, 10, 40, 10)]
+        [InlineData(0, 0, 0, 25)]
+        public void CountPendingPages_WhenTasksWereUndone_ReturnsCountPagesThatHaveTheseTasks
+            (int pendingPagesCount, int undoneTaskIndexFrom, int undoneTaskIndexTo, int tasksCapacity)
+        {
+            var pad = PadFiller.GetFullPad();
+            var tasks = pad.GetTasks();
+
+            for (var taskIndex = 0; taskIndex < tasks.Count(); taskIndex++)
+            {
+                var isTaskInsideRange = undoneTaskIndexFrom <= taskIndex && taskIndex < undoneTaskIndexTo;
+                tasks.ElementAt(taskIndex).IsDone = !isTaskInsideRange;
+            }
+
+            var paginator = new Paginator(pad) { TasksCapacity = tasksCapacity };
+            var actualPendingPagesCount = paginator.CountPendingPages();
+
+            Assert.Equal(actualPendingPagesCount, pendingPagesCount);
         }
     }
 }

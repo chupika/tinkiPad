@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Tests.TestDB
 {
+    [Ignore]
     [TestClass]
     public class TestDB
     {

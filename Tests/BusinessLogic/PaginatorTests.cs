@@ -92,5 +92,26 @@ namespace Tests.BusinessLogic
 
             Assert.Equal(actualPendingPagesCount, pendingPagesCount);
         }
+
+        [Theory]
+        [InlineData(0, 0, 25)]
+        [InlineData(1, 25, 25)]
+        [InlineData(1, 1, 25)]
+        [InlineData(10, 100, 10)]
+        public void CountPages_WhenPadHasNumberOfTasks_ReturnsNumberOfPagesOnWhichTheseTasksFit
+            (int numberOfPages, int numberOfTasks, int tasksCapacity)
+        {
+            var pad = new Pad();
+            for (var taskIndex = 0; taskIndex < numberOfTasks; taskIndex++)
+            {
+                var task = new Task();
+                pad.AddTask(task);
+            }
+
+            var paginator = new Paginator(pad) { TasksCapacity = tasksCapacity };
+            var actualCountPages = paginator.CountPages();
+
+            Assert.Equal(numberOfPages, actualCountPages);
+        }
     }
 }

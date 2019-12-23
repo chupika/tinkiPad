@@ -6,9 +6,11 @@ namespace BusinessLogic
 {
     public class Pad
     {
+        private int _activeTaskIndex;
+
         public Pad()
         {
-            ActiveTaskIndex = -1;
+            _activeTaskIndex = -1;
             Tasks = new List<Task>();
         }
 
@@ -19,8 +21,24 @@ namespace BusinessLogic
         // check in setter, if we have not such page
         public int ActivePageIndex { get; set; }
 
-        // check in setter, if we have not such task
-        public int ActiveTaskIndex { get; set; }
+        public int ActiveTaskIndex
+        {
+            get
+            {
+                return _activeTaskIndex;
+            }
+            set
+            {
+                if (Tasks.Count() < value && value >= 0)
+                {
+                    _activeTaskIndex = value;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Not appropriate index");
+                }
+            }
+        }
 
         public bool TaskWasStartedThisTurn { get; set; }
 

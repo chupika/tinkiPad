@@ -29,7 +29,7 @@ namespace BusinessLogic
             }
             set
             {
-                if (Tasks.Count() < value && value >= 0)
+                if (value < Tasks.Count() && value >= 0)
                 {
                     _activeTaskIndex = value;
                 }
@@ -70,7 +70,7 @@ namespace BusinessLogic
 
         public void ResetActiveTask()
         {
-            ActiveTaskIndex = -1;
+            _activeTaskIndex = -1;
         }
 
         public void ActivatePage(int nextPageIndex)

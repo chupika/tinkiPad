@@ -26,6 +26,37 @@ namespace Tests.BusinessLogic
         }
 
         [Fact]
+        public void GetTasksFromActivePage_WhenActivePageIsNotSet_ReturnsEmptyList()
+        {
+            var pad = PadFiller.GetFullPad();
+            pad.ActivePageIndex = -1;
+            var paginator = new Paginator(pad);
+
+            var tasksFromActivePage = paginator.GetTasksFromActivePage();
+
+            Assert.Empty(tasksFromActivePage);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(3)]
+        public void GetTasksFromActivePage_WhenActivePageIsSet_ReturnsTasksFromThatPage(int activePageIndex)
+        {
+            var pad = PadFiller.GetFullPad();
+            var paginator = new Paginator(pad);
+            pad.ActivePageIndex = activePageIndex;
+            var tasksFromPage = paginator.GetTasksFromActivePage().ToList();
+            var allTasks = pad.GetTasks().ToList();
+            foreach (var task in tasksFromPage)
+            {
+                var taskIndex = allTasks.IndexOf(task);
+                var expectedPageIndex = taskIndex / paginator.TasksCapacity;
+                Assert.Equal(activePageIndex, expectedPageIndex);
+            }
+        }
+
+        [Fact]
         public void GetNextPendingPageIndex_WhenNoOtherPagesWithActiveTasks_ThrowsException()
         {
             var pad = PadFiller.GetFullPad();

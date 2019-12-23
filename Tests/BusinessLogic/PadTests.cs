@@ -26,9 +26,9 @@ namespace Tests.BusinessLogic
         }
 
         [DataTestMethod]
+        [DataRow(0)]
         [DataRow(1)]
         [DataRow(2)]
-        [DataRow(10)]
         public void GetActiveTask_WhenActiveTaskIndexWasBeenSetInRangeOfTasksCount_ReturnNotNull(int activeTaskIndex)
         {
             var pad = new Pad();

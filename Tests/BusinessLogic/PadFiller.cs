@@ -10,8 +10,13 @@ namespace Tests.BusinessLogic
 
             for (var taskIndex = 0; taskIndex < totalTasksCount; taskIndex++)
             {
-                var task = new Task();
-                task.Caption = $"Task number: {taskIndex}";
+                var task = new Task
+                {
+                    Caption = $"Task number: {taskIndex}",
+                    Link = $"examplelink.com/{taskIndex}",
+                    Addition = $"Additional info for {taskIndex}"
+                };
+
                 pad.AddTask(task);
             }
 

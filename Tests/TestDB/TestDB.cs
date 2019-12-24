@@ -1,16 +1,14 @@
 ﻿using BusinessLogic;
 using DAL;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using System;
 using System.Linq;
 
 namespace Tests.TestDB
 {
-    [Ignore]
-    [TestClass]
     public class TestDB
     {
-        [TestMethod]
+        [Fact(Skip = "only for saving to db test")]
         public void CreateAndSaveTasks()
         {
             var task0 = new Task { Caption = "Task0", Addition = "Addition0" };
@@ -30,8 +28,8 @@ namespace Tests.TestDB
             using (var contextGetData = new ApplicationContext())
             {
                 var tasks = contextGetData.Tasks.Where(task => task.Pad.Id == pad.Id).ToList();
-                Assert.IsNotNull(tasks, "Tasks are null");
-                Assert.IsTrue(tasks.Count >= 2, "Tasks count " + tasks.Count);
+                Assert.NotNull(tasks);
+                Assert.True(tasks.Count >= 2, "Tasks count " + tasks.Count);
 
                 Console.WriteLine("Tasks list:");
                 foreach (var task in tasks)
@@ -41,13 +39,13 @@ namespace Tests.TestDB
             }
         }
 
-        [TestMethod]
+        [Fact(Skip = "only for saving to db test")]
         public void GetTask()
         {
             using (var db = new ApplicationContext())
             {
                 var pads = db.Pads.ToList();
-                Assert.IsNotNull(pads);
+                Assert.NotNull(pads);
 
                 if (pads.Count == 0)
                 {
@@ -57,7 +55,7 @@ namespace Tests.TestDB
 
                 var tasks = db.Tasks.ToList();
 
-                Assert.IsNotNull(tasks);
+                Assert.NotNull(tasks);
                 Console.WriteLine("Tasks count: " + tasks.Count);
                 Console.WriteLine("Tasks list:");
                 foreach (var task in tasks)

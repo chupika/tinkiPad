@@ -1,7 +1,7 @@
-﻿{
+{
   "version": 1,
   "projects": {
-    "helloangularapp": {
+    "tinkypad": {
       "projectType": "application",
       "root": "",
       "sourceRoot": "src",

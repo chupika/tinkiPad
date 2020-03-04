@@ -1,15 +1,17 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './main/header/header.component';
 import { ActiveTaskComponent } from './active-task/active-task.component';
-import { PadComponent } from './pad/pad.component';
-import { PageComponent } from './pad/page/page.component';
-import { TaskDetailComponent } from './pad/task-detail/task-detail.component';
-import { TaskEditorComponent } from './pad/task-editor/task-editor.component';
-import { TaskItemComponent } from './pad/page/task-item/task-item.component';;
-import { PanelComponent } from './panel/panel.component'
+import { PadComponent } from './main/pad/pad.component';
+import { PageComponent } from './main/pad/page/page.component';
+import { TaskDetailComponent } from './main/pad/task-detail/task-detail.component';
+import { TaskEditorComponent } from './main/pad/task-editor/task-editor.component';
+import { TaskItemComponent } from './main/pad/page/task-item/task-item.component';
+import { PanelComponent } from './main/panel/panel.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
     imports: [
@@ -23,9 +25,9 @@ import { PanelComponent } from './panel/panel.component'
         HeaderComponent,
         TaskDetailComponent,
         TaskEditorComponent,
-        TaskItemComponent
-,
-        PanelComponent
+        TaskItemComponent,
+        PanelComponent,
+        MainComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

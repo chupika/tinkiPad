@@ -4,6 +4,4 @@
     selector: 'app',
     templateUrl: `./app.component.html`
 })
-export class AppComponent {
-    test = '';
-}
+export class AppComponent { }

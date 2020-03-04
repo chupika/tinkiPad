@@ -1,7 +1,9 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './main/header/header.component';
 import { ActiveTaskComponent } from './active-task/active-task.component';
@@ -12,11 +14,15 @@ import { TaskEditorComponent } from './main/pad/task-editor/task-editor.componen
 import { TaskItemComponent } from './main/pad/page/task-item/task-item.component';
 import { PanelComponent } from './main/panel/panel.component';
 import { MainComponent } from './main/main.component';
+import { TaskPlaceholderComponent } from './main/pad/task-placeholder/task-placeholder.component';
 
 @NgModule({
     imports: [
+        RouterModule,
         BrowserModule,
-        FormsModule],
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule],
     declarations: [
         AppComponent,
         PageComponent,
@@ -27,7 +33,8 @@ import { MainComponent } from './main/main.component';
         TaskEditorComponent,
         TaskItemComponent,
         PanelComponent,
-        MainComponent
+        MainComponent,
+        TaskPlaceholderComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

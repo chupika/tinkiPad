@@ -9,10 +9,10 @@ import { TaskDetailComponent } from './main/pad/task-detail/task-detail.componen
 const appRoutes: Routes = [
   { path: '', redirectTo: '/active-task', pathMatch: 'full' },
   { path: 'main', component: MainComponent, children: [
-    { path: '', component: TaskPlaceholderComponent },
     { path: 'new', component: TaskEditorComponent },
-    { path: ':id', component: TaskDetailComponent },
-    { path: ':id/edit', component: TaskEditorComponent }
+    { path: ':idpage', component: TaskPlaceholderComponent },
+    { path: ':idpage/:idtask', component: TaskDetailComponent },
+    { path: ':idpage/:idtask/edit', component: TaskEditorComponent }
   ] }
 ];
 

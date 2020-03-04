@@ -5,10 +5,11 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ActiveTaskComponent } from './active-task/active-task.component';
 import { PadComponent } from './pad/pad.component';
-import { PageComponent } from './page/page.component';
+import { PageComponent } from './pad/page/page.component';
 import { TaskDetailComponent } from './pad/task-detail/task-detail.component';
 import { TaskEditorComponent } from './pad/task-editor/task-editor.component';
-import { TaskItemComponent } from './pad/task-item/task-item.component';
+import { TaskItemComponent } from './pad/page/task-item/task-item.component';;
+import { PanelComponent } from './panel/panel.component'
 
 @NgModule({
     imports: [
@@ -23,6 +24,8 @@ import { TaskItemComponent } from './pad/task-item/task-item.component';
         TaskDetailComponent,
         TaskEditorComponent,
         TaskItemComponent
+,
+        PanelComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

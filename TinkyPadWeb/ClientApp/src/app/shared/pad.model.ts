@@ -49,6 +49,6 @@ export class Pad {
 
   getTasksFromActivePage() {
     const taskIndexStart = this.activePageIndex * this.tasksOnPage;
-    return this.tasks.slice(taskIndexStart, this.tasksOnPage);
+    return this.tasks.slice(taskIndexStart, taskIndexStart + this.tasksOnPage);
   }
 }

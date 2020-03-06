@@ -15,6 +15,9 @@ import { TaskItemComponent } from './main/pad/page/task-item/task-item.component
 import { PanelComponent } from './main/panel/panel.component';
 import { MainComponent } from './main/main.component';
 import { TaskPlaceholderComponent } from './main/pad/task-placeholder/task-placeholder.component';
+import { PadService } from './shared/pad.service';
+import { PadProviderService } from './shared/pad-provider.service';
+import { PadProviderServiceMock } from './shared/pad-provider.service.mock';
 
 @NgModule({
     imports: [
@@ -36,7 +39,7 @@ import { TaskPlaceholderComponent } from './main/pad/task-placeholder/task-place
         MainComponent,
         TaskPlaceholderComponent
     ],
-    providers: [],
+    providers: [PadService, PadProviderService, PadProviderServiceMock],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

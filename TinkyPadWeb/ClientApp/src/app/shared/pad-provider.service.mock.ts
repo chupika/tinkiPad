@@ -1,10 +1,7 @@
-import { Injectable } from "@angular/core";
-
 import { Pad } from "./pad.model";
 import { Task } from "./task.model";
-import { PadProviderInterface } from './pad-provider.interface';
 
-export class PadProviderServiceMock implements PadProviderInterface {
+export class PadProviderServiceMock {
   
   getPad(): Pad {
     const tasksCount = 45;
@@ -23,7 +20,7 @@ export class PadProviderServiceMock implements PadProviderInterface {
       pad.pushTask(task);
     }
 
-    pad.activeTaskIndex = activeTaskIndex;
+    pad.setActiveTaskIndex(activeTaskIndex);
 
     return pad;
   }

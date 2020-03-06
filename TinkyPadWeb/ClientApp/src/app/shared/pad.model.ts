@@ -2,8 +2,10 @@ import { Task } from './task.model';
 
 export class Pad {
   tasks: Task[] = [];
-  activeTaskIndex = -1;
   tasksOnPage = 20;
+  
+  private activeTaskIndex = -1;
+  private activePageIndex = 0;
 
   constructor() { }
 
@@ -21,5 +23,27 @@ export class Pad {
     }
 
     return this.tasks[this.activeTaskIndex];
+  }
+
+  setActiveTaskIndex(index: number): void {
+    if (index >= this.tasks.length) {
+      throw new Error('Index exceeds quantity');
+    }
+
+    let task = this.tasks[index];
+    if (task.isDone) {
+      throw new Error('Task with such index is done');
+    }
+
+    this.activeTaskIndex = index;
+    this.activePageIndex = Math.floor(index / this.tasksOnPage);
+  }
+
+  getActivePageIndex(): number {
+    return this.activePageIndex;
+  }
+
+  getActiveTaskIndex() {
+    return this.activeTaskIndex;
   }
 }

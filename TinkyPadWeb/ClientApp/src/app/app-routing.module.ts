@@ -6,13 +6,12 @@ import { TaskPlaceholderComponent } from './main/pad/task-placeholder/task-place
 import { TaskEditorComponent } from './main/pad/task-editor/task-editor.component';
 import { TaskDetailComponent } from './main/pad/task-detail/task-detail.component';
 import { ActiveTaskComponent } from './active-task/active-task.component';
-import { PageComponent } from './main/pad/page/page.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/active-task', pathMatch: 'full' },
   { path: 'main', component: MainComponent, children: [
     { path: 'new', component: TaskEditorComponent },
-    { path: ':idpage', component: PageComponent },
+    { path: ':idpage', component: TaskPlaceholderComponent },
     { path: ':idpage/:idtask', component: TaskDetailComponent },
     { path: ':idpage/:idtask/edit', component: TaskEditorComponent }
   ] },

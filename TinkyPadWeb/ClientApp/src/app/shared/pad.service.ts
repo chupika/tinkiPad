@@ -51,4 +51,9 @@ export class PadService {
   getPageCapacity() {
     return this.pad.tasksOnPage;
   }
+  
+  getTaskFromPage(pageIndex: number, taskIndexOnPage: number) {
+    const taskFromPage = this.pad.getTasksFromPage(pageIndex);
+    return taskFromPage[taskIndexOnPage];
+  }
 }

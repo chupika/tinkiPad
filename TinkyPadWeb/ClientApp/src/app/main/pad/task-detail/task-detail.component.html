@@ -1,1 +1,7 @@
-<p>task-detail works!</p>
+<div>
+  <h3> {{ task.name }} </h3>
+  <span>{{ task.description }}</span>
+  <hr/>
+  <span *ngIf="task.isCompleted" style="color: 	#993333;">Task completed</span>
+  <span *ngIf="isTaskActive" style="color: #339933;">Task at work</span>
+</div>

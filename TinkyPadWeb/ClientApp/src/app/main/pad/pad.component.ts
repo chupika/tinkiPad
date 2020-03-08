@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { PadService } from 'src/app/shared/pad.service';
 import { Task } from 'src/app/shared/task.model';
 import { TaskStatus } from '../../shared/task-status';
+import { PageService } from '../../shared/page.service';
 
 @Component({
   selector: 'app-pad',
@@ -18,6 +19,7 @@ export class PadComponent implements OnInit, OnDestroy {
   pageIndex: number;
 
   constructor(private padService: PadService,
+              private pageService: PageService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -25,8 +27,9 @@ export class PadComponent implements OnInit, OnDestroy {
     this.paramsSubscription = this.route.params
       .subscribe(
         (params: Params) => {
-          const pageIndex = +params['idpage'];
-          this.tasks = this.getTaskFromPage(pageIndex);
+          this.pageIndex = +params['idpage'];
+          this.pageService.setPage(this.pageIndex);
+          this.tasks = this.getTaskFromPage(this.pageIndex);
           this.activeTaskIndexOnPage = this.padService.getActiveTaskIndexOnPage();
         }
       );
@@ -63,7 +66,8 @@ export class PadComponent implements OnInit, OnDestroy {
   }
 
   onTaskDetailsOpen(taskIndexOnPage: number) {
-    this.router.navigate([taskIndexOnPage], {relativeTo: this.route});
+    // this.router.navigate([taskIndexOnPage], {relativeTo: this.route});
+    this.router.navigate([this.pageIndex, taskIndexOnPage]);
   }
 
   ngOnDestroy(): void {

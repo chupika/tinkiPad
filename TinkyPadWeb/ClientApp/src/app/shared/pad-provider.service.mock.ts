@@ -15,7 +15,7 @@ export class PadProviderServiceMock {
       const taskDescription = 'task description ' + i;
       const task = new Task(taskName, taskDescription);
         
-      task.isDone = doneTasksIndexes.includes(i);
+      task.isCompleted = doneTasksIndexes.includes(i);
 
       pad.pushTask(task);
     }

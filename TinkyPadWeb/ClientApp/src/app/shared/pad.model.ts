@@ -31,7 +31,7 @@ export class Pad {
     }
 
     let task = this.tasks[index];
-    if (task.isDone) {
+    if (task.isCompleted) {
       throw new Error('Task with such index is done');
     }
 

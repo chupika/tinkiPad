@@ -35,7 +35,7 @@ export class PadComponent implements OnInit, OnDestroy {
     
     return {
       'list-group-item-secondary': taskStatus === TaskStatus.General || taskStatus === TaskStatus.Empty,
-      'list-group-item-light': taskStatus === TaskStatus.Done,
+      'list-group-item-completed': taskStatus === TaskStatus.Completed,
       'list-group-item-primary': taskStatus === TaskStatus.Active
     };
   }
@@ -69,8 +69,8 @@ export class PadComponent implements OnInit, OnDestroy {
       return TaskStatus.Active;
     }
 
-    if (task.isDone) {
-      return TaskStatus.Done;
+    if (task.isCompleted) {
+      return TaskStatus.Completed;
     }
 
     return TaskStatus.General;

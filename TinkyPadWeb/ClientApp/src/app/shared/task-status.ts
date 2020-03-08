@@ -1,6 +1,6 @@
 export enum TaskStatus {
   General,
   Active,
-  Done,
+  Completed,
   Empty
 }

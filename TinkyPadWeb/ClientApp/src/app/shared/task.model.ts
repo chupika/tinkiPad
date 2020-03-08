@@ -1,7 +1,7 @@
 export class Task {
   name: string;
   description: string;
-  isDone = false;
+  isCompleted = false;
 
   constructor(name: string = '', description: string = '') {
     this.name = name;

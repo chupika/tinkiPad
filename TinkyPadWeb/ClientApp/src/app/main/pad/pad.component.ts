@@ -29,7 +29,7 @@ export class PadComponent implements OnInit, OnDestroy {
         (params: Params) => {
           this.pageIndex = +params['idpage'];
           this.pageService.setPage(this.pageIndex);
-          this.tasks = this.getTaskFromPage(this.pageIndex);
+          this.tasks = this.getTasksFromPage(this.pageIndex);
           this.activeTaskIndexOnPage = this.padService.getActiveTaskIndexOnPage();
         }
       );
@@ -45,7 +45,7 @@ export class PadComponent implements OnInit, OnDestroy {
     };
   }
 
-  getTaskFromPage(pageIndex: number) {
+  getTasksFromPage(pageIndex: number) {
     let originalTasks = this.padService.getTasksFromPage(pageIndex);
 
     if (this.padService.isPageFilled(pageIndex)) {
@@ -66,8 +66,7 @@ export class PadComponent implements OnInit, OnDestroy {
   }
 
   onTaskDetailsOpen(taskIndexOnPage: number) {
-    // this.router.navigate([taskIndexOnPage], {relativeTo: this.route});
-    this.router.navigate([this.pageIndex, taskIndexOnPage]);
+    this.router.navigate([taskIndexOnPage], {relativeTo: this.route});
   }
 
   ngOnDestroy(): void {
@@ -79,7 +78,8 @@ export class PadComponent implements OnInit, OnDestroy {
       return TaskStatus.Empty;
     }
 
-    if (this.activeTaskIndexOnPage === index) {
+    if (this.activeTaskIndexOnPage === index
+        && this.pageIndex === this.padService.getActivePageIndex()) {
       return TaskStatus.Active;
     }
 

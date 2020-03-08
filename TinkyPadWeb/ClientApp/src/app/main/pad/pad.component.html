@@ -4,7 +4,8 @@
       <div class="col-11">
         <div class="list-group">
           <a
-            href="#"
+            (click)="onTaskDetailsOpen(i)"
+            style="cursor: pointer;"
             class="list-group-item list-group-item-action py-2"
             *ngFor="let task of tasks; let i = index"
             [ngClass]="getStatusClasses(task, i)">

@@ -18,6 +18,7 @@ export class ActiveTaskComponent implements OnInit {
   }
 
   onOpenPad() {
-    this.router.navigate(['main']);
+    const activePageIndex = this.padService.getActivePageIndex();
+    this.router.navigate([activePageIndex]);
   }
 }

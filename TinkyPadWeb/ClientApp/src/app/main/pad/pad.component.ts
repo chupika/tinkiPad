@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { PadService } from 'src/app/shared/pad.service';
@@ -17,7 +17,9 @@ export class PadComponent implements OnInit, OnDestroy {
   paramsSubscription: Subscription;
   pageIndex: number;
 
-  constructor(private padService: PadService, private route: ActivatedRoute) { }
+  constructor(private padService: PadService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.paramsSubscription = this.route.params
@@ -41,7 +43,7 @@ export class PadComponent implements OnInit, OnDestroy {
   }
 
   getTaskFromPage(pageIndex: number) {
-    let originalTasks = this.padService.getTasksFromActivePage();
+    let originalTasks = this.padService.getTasksFromPage(pageIndex);
 
     if (this.padService.isPageFilled(pageIndex)) {
       return originalTasks;
@@ -60,6 +62,14 @@ export class PadComponent implements OnInit, OnDestroy {
     return this.padService.getTasksFromActivePage();   
   }
 
+  onTaskDetailsOpen(taskIndexOnPage: number) {
+    this.router.navigate([taskIndexOnPage], {relativeTo: this.route});
+  }
+
+  ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe();
+  }
+
   private getTaskStatus(task: Task, index: number): TaskStatus {
     if (task.name === '') {
       return TaskStatus.Empty;
@@ -74,9 +84,5 @@ export class PadComponent implements OnInit, OnDestroy {
     }
 
     return TaskStatus.General;
-  }
-
-  ngOnDestroy(): void {
-    this.paramsSubscription.unsubscribe();
   }
 }

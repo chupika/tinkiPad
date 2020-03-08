@@ -24,6 +24,10 @@ export class PadService {
     return this.pad.getTasksFromActivePage();
   }
 
+  getTasksFromPage(pageIndex: number): Task[] {
+    return this.pad.getTasksFromPage(pageIndex);
+  }
+
   isActiveTaskChosen(): boolean {
     return this.pad.getActiveTaskIndex() !== -1;
   }

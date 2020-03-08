@@ -65,10 +65,6 @@ export class PadComponent implements OnInit, OnDestroy {
     return this.padService.getTasksFromActivePage();   
   }
 
-  onTaskDetailsOpen(taskIndexOnPage: number) {
-    this.router.navigate([taskIndexOnPage], {relativeTo: this.route});
-  }
-
   ngOnDestroy(): void {
     this.paramsSubscription.unsubscribe();
   }

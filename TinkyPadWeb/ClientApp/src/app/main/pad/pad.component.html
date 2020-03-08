@@ -11,11 +11,12 @@
           <div class="col-11">
             <div class="list-group">
               <a
-                (click)="onTaskDetailsOpen(i)"
-                style="cursor: pointer;"
-                class="list-group-item list-group-item-action py-2"
+                [routerLink]="[i]"
+                routerLinkActive="active"
                 *ngFor="let task of tasks; let i = index"
-                [ngClass]="getStatusClasses(task, i)">
+                [ngClass]="getStatusClasses(task, i)"
+                style="cursor: pointer;"
+                class="list-group-item list-group-item-action py-2">
                 {{ task.name }}
               </a>
             </div>        

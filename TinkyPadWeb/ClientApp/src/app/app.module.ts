@@ -11,7 +11,6 @@ import { PadComponent } from './main/pad/pad.component';
 import { TaskDetailComponent } from './main/pad/task-detail/task-detail.component';
 import { TaskEditorComponent } from './main/pad/task-editor/task-editor.component';
 import { PanelComponent } from './main/panel/panel.component';
-import { MainComponent } from './main/main.component';
 import { TaskPlaceholderComponent } from './main/pad/task-placeholder/task-placeholder.component';
 import { PadService } from './shared/pad.service';
 import { PadProviderService } from './shared/pad-provider.service';
@@ -32,7 +31,6 @@ import { PadProviderServiceMock } from './shared/pad-provider.service.mock';
         TaskDetailComponent,
         TaskEditorComponent,
         PanelComponent,
-        MainComponent,
         TaskPlaceholderComponent
     ],
     providers: [PadService, PadProviderService, PadProviderServiceMock],

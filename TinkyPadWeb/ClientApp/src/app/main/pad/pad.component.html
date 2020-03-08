@@ -1,21 +1,37 @@
-<div class="row" style="margin-top: 20px;">
-  <div class="col-md-7">
-    <div class="row justify-content-center">
-      <div class="col-11">
-        <div class="list-group">
-          <a
-            (click)="onTaskDetailsOpen(i)"
-            style="cursor: pointer;"
-            class="list-group-item list-group-item-action py-2"
-            *ngFor="let task of tasks; let i = index"
-            [ngClass]="getStatusClasses(task, i)">
-            {{ task.name }}
-          </a>
-        </div>        
+<div class="row">
+  <div class="col-md-12">
+    <app-header></app-header>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-11">
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-7">
+        <div class="row justify-content-center">
+          <div class="col-11">
+            <div class="list-group">
+              <a
+                (click)="onTaskDetailsOpen(i)"
+                style="cursor: pointer;"
+                class="list-group-item list-group-item-action py-2"
+                *ngFor="let task of tasks; let i = index"
+                [ngClass]="getStatusClasses(task, i)">
+                {{ task.name }}
+              </a>
+            </div>        
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="row justify-content-center">
+          <div class="col-11">
+            <router-outlet></router-outlet>        
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-md-5">
-    <router-outlet></router-outlet>
+  <div class="col-md-1">
+    <app-panel></app-panel>
   </div>
 </div>

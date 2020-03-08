@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PadService } from '../shared/pad.service';
+import { Task } from '../shared/task.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./active-task.component.css']
 })
 export class ActiveTaskComponent implements OnInit {
+  activeTask: Task;
 
   constructor(private padService: PadService, private router: Router) { }
 
   ngOnInit(): void {
-    if (!this.padService.isActiveTaskChosen()) {
-      this.router.navigate(['main']);
-    }
+    this.activeTask = this.padService.getActiveTask();
   }
 
+  onOpenPad() {
+    this.router.navigate(['main']);
+  }
 }

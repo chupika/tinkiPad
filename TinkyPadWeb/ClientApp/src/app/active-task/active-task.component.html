@@ -1,1 +1,14 @@
-<p>active-task works!</p>
+<div class="container" style="margin-top: 50px;">
+  <div class="col-xs-5">
+    <div>
+      <h2>{{ activeTask ? activeTask.name : 'You have no active task' }}</h2>
+      <small
+        *ngIf="activeTask"
+        class="text-muted">Active task</small>
+      <hr />
+      <button
+        class="btn btn-primary"
+        (click)="onOpenPad()">{{ activeTask ? 'Open Pad' : 'Choose it'}}</button>
+    </div>
+  </div>
+</div>

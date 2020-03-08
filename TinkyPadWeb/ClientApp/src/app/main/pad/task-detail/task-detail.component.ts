@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Task } from 'src/app/shared/task.model';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
+import { Task } from 'src/app/shared/task.model';
 import { PadService } from 'src/app/shared/pad.service';
 import { PageService } from 'src/app/shared/page.service';
 
@@ -17,7 +18,8 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
 
   constructor(private padService: PadService,
               private pageService: PageService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.paramsSubscription = this.route.params
@@ -36,6 +38,10 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     const activeTaskIndexOnPage = this.padService.getActiveTaskIndexOnPage();
 
     return isActivePage == pageIndex && activeTaskIndexOnPage == taskIndexOnPage;
+  }
+
+  onEdit(): void {
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
   ngOnDestroy() {

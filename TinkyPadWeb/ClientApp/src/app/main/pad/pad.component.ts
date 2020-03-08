@@ -29,7 +29,7 @@ export class PadComponent implements OnInit, OnDestroy {
         (params: Params) => {
           this.pageIndex = +params['idpage'];
           this.pageService.setPage(this.pageIndex);
-          this.tasks = this.getTasksFromPage(this.pageIndex);
+          this.tasks = this.getTasksFromPageWithAppendix(this.pageIndex);
           this.activeTaskIndexOnPage = this.padService.getActiveTaskIndexOnPage();
         }
       );
@@ -45,7 +45,7 @@ export class PadComponent implements OnInit, OnDestroy {
     };
   }
 
-  getTasksFromPage(pageIndex: number) {
+  getTasksFromPageWithAppendix(pageIndex: number) {
     let originalTasks = this.padService.getTasksFromPage(pageIndex);
 
     if (this.padService.isPageFilled(pageIndex)) {

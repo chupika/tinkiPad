@@ -13,6 +13,7 @@ import { TaskEditorComponent } from './main/pad/task-editor/task-editor.componen
 import { PanelComponent } from './main/panel/panel.component';
 import { TaskPlaceholderComponent } from './main/pad/task-placeholder/task-placeholder.component';
 import { PadService } from './shared/pad.service';
+import { PageService } from './shared/page.service';
 import { PadProviderService } from './shared/pad-provider.service';
 import { PadProviderServiceMock } from './shared/pad-provider.service.mock';
 
@@ -33,7 +34,11 @@ import { PadProviderServiceMock } from './shared/pad-provider.service.mock';
         PanelComponent,
         TaskPlaceholderComponent
     ],
-    providers: [PadService, PadProviderService, PadProviderServiceMock],
+    providers: [
+        PadService,
+        PageService,
+        PadProviderService,
+        PadProviderServiceMock],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

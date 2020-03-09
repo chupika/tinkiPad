@@ -56,4 +56,13 @@ export class PadService {
     const taskFromPage = this.pad.getTasksFromPage(pageIndex);
     return taskFromPage[taskIndexOnPage];
   }
+
+  updateTask(pageIndex: number, taskIndexOnPage: number, task: Task) {
+    const globalIndex = pageIndex * this.pad.tasksOnPage + taskIndexOnPage;
+    this.pad.tasks[globalIndex] = task;
+  }
+
+  addTask(task: Task) {
+    this.pad.pushTask(task);
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { PadService } from 'src/app/shared/pad.service';
@@ -16,23 +16,25 @@ export class PadComponent implements OnInit, OnDestroy {
   tasks: Task[];
   activeTaskIndexOnPage: number;
   paramsSubscription: Subscription;
+  taskChangedSubscription: Subscription;
   pageIndex: number;
 
   constructor(private padService: PadService,
               private pageService: PageService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.paramsSubscription = this.route.params
       .subscribe(
         (params: Params) => {
-          this.pageIndex = +params['idpage'];
-          this.pageService.setPage(this.pageIndex);
-          this.tasks = this.getTasksFromPageWithAppendix(this.pageIndex);
-          this.activeTaskIndexOnPage = this.padService.getActiveTaskIndexOnPage();
+          this.initializePage(+params['idpage']);
         }
       );
+
+    this.taskChangedSubscription = this.padService.tasksChanged
+      .subscribe(() => {
+      this.initializePage(this.pageIndex);
+    });
   }
 
   getStatusClasses(task: Task, index: number) {
@@ -67,6 +69,14 @@ export class PadComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscription.unsubscribe();
+    this.taskChangedSubscription.unsubscribe();
+  }
+
+  private initializePage(pageIndex: number) {
+    this.pageIndex = pageIndex;
+    this.pageService.setPage(this.pageIndex);
+    this.tasks = this.getTasksFromPageWithAppendix(this.pageIndex);
+    this.activeTaskIndexOnPage = this.padService.getActiveTaskIndexOnPage();
   }
 
   private getTaskStatus(task: Task, index: number): TaskStatus {

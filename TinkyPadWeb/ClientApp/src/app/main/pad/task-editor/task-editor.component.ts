@@ -59,6 +59,6 @@ export class TaskEditorComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(["../"]);
+    this.router.navigate(["../"], { relativeTo: this.route });
   }
 }

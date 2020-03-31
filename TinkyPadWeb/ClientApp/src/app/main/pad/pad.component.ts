@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { PadService } from 'src/app/shared/pad.service';
@@ -21,7 +21,8 @@ export class PadComponent implements OnInit, OnDestroy {
 
   constructor(private padService: PadService,
               private pageService: PageService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.paramsSubscription = this.route.params
@@ -94,5 +95,18 @@ export class PadComponent implements OnInit, OnDestroy {
     }
 
     return TaskStatus.General;
+  }
+
+  onPreviousPage() {
+    this.router.navigate([this.pageIndex - 1]);
+  }
+
+  onActivePage() {
+    const activePageIndex = this.padService.getActivePageIndex();
+    this.router.navigate([activePageIndex]);
+  }
+
+  onNextPage() {
+    this.router.navigate([this.pageIndex + 1]);
   }
 }

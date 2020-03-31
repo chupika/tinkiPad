@@ -2,8 +2,9 @@
   <h3> {{ task.name }} </h3>
   <span>{{ task.description }}</span>
   <hr/>
-  <span *ngIf="task.isCompleted" style="color: 	#993333;">Task completed</span>
-  <span *ngIf="isTaskActive" style="color: #339933;">Task at work</span>
+  <span *ngIf="task.isCompleted" class="text-danger">Task completed</span>
+  <span *ngIf="isTaskActive" class="text-success">Task at work</span>
   <br>
-  <button class="btn btn-warning" (click)="onEdit()">Edit</button>
+  <br>
+  <button class="btn btn-secondary" (click)="onEdit()">Edit</button>
 </div>

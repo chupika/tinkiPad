@@ -28,7 +28,13 @@ export class PadComponent implements OnInit, OnDestroy {
     this.paramsSubscription = this.route.params
       .subscribe(
         (params: Params) => {
-          this.initializePage(+params['idpage']);
+          const idPage = +params['idpage'];
+          const pageCount = this.pageService.pageCount();
+          if (!isNaN(idPage) && idPage >= 0 && idPage < pageCount - 1) {
+            this.initializePage(+params['idpage']);
+          } else {
+            this.router.navigate(['page-not-found']);
+          }
         }
       );
 

@@ -70,6 +70,11 @@ export class PadService {
     this.notifyTasksChanged();
   }
 
+  getPageCount() {
+    const pageCount = Math.floor(this.pad.tasks.length / this.pad.tasksOnPage) + 1;
+    return pageCount;
+  }
+
   private notifyTasksChanged() {
     this.tasksChanged.next();
   }

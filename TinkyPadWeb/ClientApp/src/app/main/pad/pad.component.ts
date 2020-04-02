@@ -30,8 +30,8 @@ export class PadComponent implements OnInit, OnDestroy {
         (params: Params) => {
           const idPage = +params['idpage'];
           const pageCount = this.pageService.pageCount();
-          if (!isNaN(idPage) && idPage >= 0 && idPage < pageCount - 1) {
-            this.initializePage(+params['idpage']);
+          if (!isNaN(idPage) && idPage >= 0 && idPage < pageCount) {
+            this.initializePage(idPage);
           } else {
             this.router.navigate(['page-not-found']);
           }
@@ -48,30 +48,10 @@ export class PadComponent implements OnInit, OnDestroy {
     const taskStatus = this.getTaskStatus(task, index);
     
     return {
-      'list-group-item-secondary': taskStatus === TaskStatus.General || taskStatus === TaskStatus.Empty,
+      'list-group-item-secondary': taskStatus === TaskStatus.General,
       'list-group-item-completed': taskStatus === TaskStatus.Completed,
       'list-group-item-primary': taskStatus === TaskStatus.Active
     };
-  }
-
-  getTasksFromPageWithAppendix(pageIndex: number) {
-    let originalTasks = this.padService.getTasksFromPage(pageIndex);
-
-    if (this.padService.isPageFilled(pageIndex)) {
-      return originalTasks;
-    }
-
-    const appendixEmptyTasks: Task[] = [];
-    const emptyTasksCount =  this.padService.getPageCapacity() - originalTasks.length;
-
-    for (let i = 0; i < emptyTasksCount; i++) {
-      let emptyTask = new Task();
-      appendixEmptyTasks.push(emptyTask);
-    }
-
-    originalTasks.push(...appendixEmptyTasks);
-
-    return this.padService.getTasksFromActivePage();   
   }
 
   ngOnDestroy(): void {
@@ -82,15 +62,11 @@ export class PadComponent implements OnInit, OnDestroy {
   private initializePage(pageIndex: number) {
     this.pageIndex = pageIndex;
     this.pageService.setPage(this.pageIndex);
-    this.tasks = this.getTasksFromPageWithAppendix(this.pageIndex);
+    this.tasks = this.padService.getTasksFromPage(this.pageIndex);
     this.activeTaskIndexOnPage = this.padService.getActiveTaskIndexOnPage();
   }
 
   private getTaskStatus(task: Task, index: number): TaskStatus {
-    if (task.name === '') {
-      return TaskStatus.Empty;
-    }
-
     if (this.activeTaskIndexOnPage === index
         && this.pageIndex === this.padService.getActivePageIndex()) {
       return TaskStatus.Active;

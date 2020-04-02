@@ -16,6 +16,7 @@ import { PadService } from './shared/pad.service';
 import { PageService } from './shared/page.service';
 import { PadProviderService } from './shared/pad-provider.service';
 import { PadProviderServiceMock } from './shared/pad-provider.service.mock';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { PadProviderServiceMock } from './shared/pad-provider.service.mock';
         TaskDetailComponent,
         TaskEditorComponent,
         PanelComponent,
-        TaskPlaceholderComponent
+        TaskPlaceholderComponent,
+        PageNotFoundComponent
     ],
     providers: [
         PadService,

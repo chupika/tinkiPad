@@ -91,4 +91,12 @@ export class PadComponent implements OnInit, OnDestroy {
   onNextPage() {
     this.router.navigate([this.pageIndex + 1]);
   }
+
+  previousPageAvailable() {
+    return this.pageIndex > 0; 
+  }
+
+  nextPageAvailable() {
+    return this.pageIndex < this.pageService.pageCount() - 1;
+  }
 }

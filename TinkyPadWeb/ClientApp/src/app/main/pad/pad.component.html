@@ -24,13 +24,27 @@
         </div>
         <div class="row" class="row justify-content-center" style="margin-top: 1em;">
           <div class="col-3">
-            <button type="button" class="btn btn-secondary" (click)="onPreviousPage()">Previous Page</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onPreviousPage()"
+              [disabled]="!previousPageAvailable()"
+              >Previous Page</button>
           </div>
           <div class="col-3">
-            <button type="button" class="btn btn-primary" (click)="onActivePage()">Active Page</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="onActivePage()"
+              >Active Page</button>
           </div>
           <div class="col-3">
-            <button type="button" class="btn btn-secondary" (click)="onNextPage()">Next Page</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onNextPage()"
+              [disabled]="!nextPageAvailable()"
+              >Next Page</button>
           </div>
         </div>
       </div>

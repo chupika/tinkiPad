@@ -30,13 +30,15 @@ export class Pad {
       throw new Error('Index exceeds quantity');
     }
 
-    let task = this.tasks[index];
-    if (task.isCompleted) {
+    if (index != -1 && this.tasks[index].isCompleted) {
       throw new Error('Task with such index is done');
     }
 
     this.activeTaskIndex = index;
-    this.activePageIndex = Math.floor(index / this.tasksOnPage);
+
+    if (index != -1) {
+      this.activePageIndex = Math.floor(index / this.tasksOnPage);
+    }
   }
 
   getActivePageIndex(): number {

@@ -12,7 +12,9 @@ export class HeaderComponent implements OnInit {
   constructor(private padService: PadService) { }
 
   ngOnInit(): void {
-    this.activeTaskName = this.padService.getActiveTask().name;
+    if (this.padService.isActiveTaskChosen()) {
+      this.activeTaskName = this.padService.getActiveTask().name;
+    }
   }
 
 }

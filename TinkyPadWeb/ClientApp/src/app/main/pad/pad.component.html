@@ -1,63 +1,45 @@
-<div class="row">
-  <div class="col-md-12">
-    <app-header></app-header>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-11">
-    <div class="row" style="margin-top: 20px;">
-      <div class="col-md-7">
-        <div class="row justify-content-center">
-          <div class="col-11">
-            <div class="list-group">
-              <a
-                [routerLink]="[i]"
-                routerLinkActive="active"
-                *ngFor="let task of tasks; let i = index"
-                [ngClass]="getStatusClasses(task, i)"
-                style="cursor: pointer;"
-                class="list-group-item list-group-item-action py-2">
-                {{ task.name }}
-              </a>
-            </div>        
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-11">
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-md-7">
+          <div class="row justify-content-center">
+            <div class="col-11">
+              <div class="list-group">
+                <a [routerLink]="[i]" routerLinkActive="active" *ngFor="let task of tasks; let i = index"
+                  [ngClass]="getStatusClasses(task, i)" style="cursor: pointer;"
+                  class="list-group-item list-group-item-action py-2">
+                  {{ task.name }}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row" class="row justify-content-center" style="margin-top: 1em;">
+            <div class="col-3">
+              <button type="button" class="btn btn-secondary" (click)="onPreviousPage()"
+                [disabled]="!previousPageAvailable()">Previous Page</button>
+            </div>
+            <div class="col-3">
+              <button type="button" class="btn btn-primary" (click)="onActivePage()">Active Page</button>
+            </div>
+            <div class="col-3">
+              <button type="button" class="btn btn-secondary" (click)="onNextPage()"
+                [disabled]="!nextPageAvailable()">Next Page</button>
+            </div>
           </div>
         </div>
-        <div class="row" class="row justify-content-center" style="margin-top: 1em;">
-          <div class="col-3">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="onPreviousPage()"
-              [disabled]="!previousPageAvailable()"
-              >Previous Page</button>
-          </div>
-          <div class="col-3">
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="onActivePage()"
-              >Active Page</button>
-          </div>
-          <div class="col-3">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="onNextPage()"
-              [disabled]="!nextPageAvailable()"
-              >Next Page</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div class="row justify-content-center">
-          <div class="col-11">
-            <router-outlet></router-outlet>        
+        <div class="col-md-5">
+          <div class="row justify-content-center">
+            <div class="col-11">
+              <router-outlet></router-outlet>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-1">
-    <app-panel></app-panel>
+    <div class="col-md-1">
+      <app-panel></app-panel>
+    </div>
   </div>
 </div>

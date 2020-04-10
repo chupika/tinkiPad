@@ -7,24 +7,40 @@
           <div class="row justify-content-center">
             <div class="col-11">
               <div class="list-group">
-                <a [routerLink]="[i]" routerLinkActive="active" *ngFor="let task of tasks; let i = index"
-                  [ngClass]="getStatusClasses(task, i)" style="cursor: pointer;"
+                <a
+                  [routerLink]="[i]"
+                  routerLinkActive="active"
+                  *ngFor="let task of tasks; let i = index"
+                  [ngClass]="getStatusClasses(task, i)"
+                  style="cursor: pointer;"
                   class="list-group-item list-group-item-action py-2">
                   {{ task.name }}
                 </a>
               </div>
             </div>
           </div>
-          <div class="row" class="row justify-content-center" style="margin-top: 1em;">
+          <div
+            class="row"
+            class="row justify-content-center"
+            style="margin-top: 1em;">
             <div class="col-3">
-              <button type="button" class="btn btn-secondary" (click)="onPreviousPage()"
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="onPreviousPage()"
                 [disabled]="!previousPageAvailable()">Previous Page</button>
             </div>
             <div class="col-3">
-              <button type="button" class="btn btn-primary" (click)="onActivePage()">Active Page</button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="onActivePage()">Active Page</button>
             </div>
             <div class="col-3">
-              <button type="button" class="btn btn-secondary" (click)="onNextPage()"
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="onNextPage()"
                 [disabled]="!nextPageAvailable()">Next Page</button>
             </div>
           </div>

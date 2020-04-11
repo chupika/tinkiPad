@@ -4,8 +4,8 @@ import { Subscription } from 'rxjs';
 
 import { PadService } from 'src/app/shared/pad.service';
 import { Task } from 'src/app/shared/task.model';
-import { TaskStatus } from '../../shared/task-status';
-import { PageService } from '../../shared/page.service';
+import { TaskStatus } from '../shared/task-status';
+import { PageService } from '../shared/page.service';
 
 @Component({
   selector: 'app-pad',

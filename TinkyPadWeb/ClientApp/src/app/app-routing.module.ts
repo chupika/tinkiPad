@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { TaskPlaceholderComponent } from './main/pad/task-placeholder/task-placeholder.component';
-import { TaskEditorComponent } from './main/pad/task-editor/task-editor.component';
-import { TaskDetailComponent } from './main/pad/task-detail/task-detail.component';
+import { TaskPlaceholderComponent } from './pad/task-placeholder/task-placeholder.component';
+import { TaskEditorComponent } from './pad/task-editor/task-editor.component';
+import { TaskDetailComponent } from './pad/task-detail/task-detail.component';
 import { ActiveTaskComponent } from './active-task/active-task.component';
-import { PadComponent } from './main/pad/pad.component';
+import { PadComponent } from './pad/pad.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [

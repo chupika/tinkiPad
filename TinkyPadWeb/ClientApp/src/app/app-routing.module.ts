@@ -12,11 +12,11 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/active-task', pathMatch: 'full' },
   { path: 'active-task', component: ActiveTaskComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
+  { path: 'new', component: TaskEditorComponent },
   { path: ':idpage', component: PadComponent, children: [
     { path: '', component: TaskPlaceholderComponent },
     { path: ':idtask', component: TaskDetailComponent },
-    { path: ':idtask/edit', component: TaskEditorComponent },
-    { path: 'new', component: TaskEditorComponent }
+    { path: ':idtask/edit', component: TaskEditorComponent }
   ] },
   { path: '**', redirectTo: 'page-not-found' }
 ];

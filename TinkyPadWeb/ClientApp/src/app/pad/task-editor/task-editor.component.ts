@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { PadService } from 'src/app/shared/pad.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
@@ -17,7 +18,7 @@ export class TaskEditorComponent implements OnInit {
   taskForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
+              private location: Location,
               private padService: PadService,
               private pageService: PageService) { }
 
@@ -59,6 +60,6 @@ export class TaskEditorComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(["../"], { relativeTo: this.route });
+    this.location.back();
   }
 }

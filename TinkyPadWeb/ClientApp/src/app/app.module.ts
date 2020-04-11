@@ -16,6 +16,7 @@ import { PadService } from './shared/pad.service';
 import { PageService } from './shared/page.service';
 import { PadProviderService } from './shared/pad-provider.service';
 import { PadProviderServiceMock } from './shared/pad-provider.service.mock';
+import { PanelService } from './panel/panel.service';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 @NgModule({
@@ -38,9 +39,11 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     ],
     providers: [
         PadService,
-        PageService,
         PadProviderService,
-        PadProviderServiceMock],
+        PadProviderServiceMock,
+        PageService,
+        PanelService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

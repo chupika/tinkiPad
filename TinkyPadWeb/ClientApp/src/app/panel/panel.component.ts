@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PanelService } from './panel.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panel',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private panelService: PanelService, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
+  onNewTask() {
+    this.router.navigate(['new']);
+  }
+
+  onChoose() {
+
+  }
+
+  onComplete() {
+
+  }
+
+  onInterrupt() {
+
+  }
+
+  onTurnThePage() {
+
+  }
 }

@@ -1,14 +1,27 @@
 <div>
   <button
     type="button"
-    class="btn btn-primary btn-circle"
+    class="btn btn-primary"
+    (click)="onNewTask()"
     >Add</button>
   <button
     type="button"
-    class="btn btn-secondary btn-circle"
+    class="btn btn-secondary"
+    (click)="onChoose()"
     >Choose</button>
   <button
     type="button"
-    class="btn btn-default btn-circle"
+    class="btn btn-secondary"
+    (click)="onComplete()"
+    >Complete</button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="onInterrupt()"
+    >Interrupt</button>
+  <button
+    type="button"
+    class="btn btn-default"
+    (click)="onTurnThePage()"
     >Turn the page</button>
 </div>

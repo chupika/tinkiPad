@@ -8,6 +8,7 @@
     type="button"
     class="btn btn-secondary"
     (click)="onChoose()"
+    [disabled]="!chooseTaskAvailable()"
     >Choose</button>
   <button
     type="button"

@@ -26,7 +26,7 @@ export class TaskEditorComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.taskIndexOnPage = +params['idtask'];
-        this.pageIndex = this.pageService.pageIndex;
+        this.pageIndex = this.pageService.openedPageIndex;
         this.editMode = params['idtask'] != null;
         this.initForm();       
       }

@@ -57,11 +57,13 @@ export class PadComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.paramsSubscription.unsubscribe();
     this.taskChangedSubscription.unsubscribe();
+    this.pageService.clearOpenedPage();
+    this.pageService.clearSelectedTask();
   }
 
   private initializePage(pageIndex: number) {
     this.pageIndex = pageIndex;
-    this.pageService.setPage(this.pageIndex);
+    this.pageService.openedPageIndex = this.pageIndex;
     this.tasks = this.padService.getTasksFromPage(this.pageIndex);
     this.activeTaskIndexOnPage = this.padService.getActiveTaskIndexOnPage();
   }

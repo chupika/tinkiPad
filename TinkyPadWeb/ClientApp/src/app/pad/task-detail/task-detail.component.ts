@@ -25,8 +25,9 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     this.paramsSubscription = this.route.params
     .subscribe(
       (params: Params) => {
-        const pageIndex = this.pageService.pageIndex;
+        const pageIndex = this.pageService.openedPageIndex;
         const taskIndexOnPage = +params['idtask'];
+        this.pageService.selectedTaskIndexOnPage = taskIndexOnPage;
         this.isTaskActive = this.checkTaskActive(pageIndex, taskIndexOnPage);
         this.task = this.padService.getTaskFromPage(pageIndex, taskIndexOnPage);
       }
@@ -46,5 +47,6 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
+    this.pageService.clearSelectedTask();
   }
 }

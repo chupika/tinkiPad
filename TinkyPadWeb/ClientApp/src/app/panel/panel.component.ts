@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PanelService } from './panel.service';
 import { Router } from '@angular/router';
+import { PageService } from '../shared/page.service';
+import { PadService } from '../shared/pad.service';
 
 @Component({
   selector: 'app-panel',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PanelComponent implements OnInit {
 
-  constructor(private panelService: PanelService, private router: Router) { }
+  constructor(private pageService: PageService, private padService: PadService, private router: Router) {}
 
   ngOnInit() {
   }
@@ -19,7 +20,7 @@ export class PanelComponent implements OnInit {
   }
 
   onChoose() {
-
+    
   }
 
   onComplete() {
@@ -32,5 +33,9 @@ export class PanelComponent implements OnInit {
 
   onTurnThePage() {
 
+  }
+
+  chooseTaskAvailable() {
+    return this.pageService.selectedTaskIndexOnPage != null;
   }
 }

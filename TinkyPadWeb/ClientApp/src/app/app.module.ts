@@ -17,6 +17,9 @@ import { PageService } from './shared/page.service';
 import { PadProviderService } from './shared/pad-provider.service';
 import { PadProviderServiceMock } from './shared/pad-provider.service.mock';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { PanelService } from './panel/panel.service';
+import { AlertService } from './shared/alert/alert.service';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
     imports: [
@@ -24,7 +27,8 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        AppRoutingModule],
+        AppRoutingModule
+    ],
     declarations: [
         AppComponent,
         PadComponent,
@@ -34,13 +38,16 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
         TaskEditorComponent,
         PanelComponent,
         TaskPlaceholderComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        AlertComponent
     ],
     providers: [
         PadService,
         PadProviderService,
         PadProviderServiceMock,
-        PageService
+        PageService,
+        PanelService,
+        AlertService
     ],
     bootstrap: [AppComponent]
 })

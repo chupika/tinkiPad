@@ -6,6 +6,7 @@ import { PadService } from 'src/app/shared/pad.service';
 import { Task } from 'src/app/shared/task.model';
 import { TaskStatus } from '../shared/task-status';
 import { PageService } from '../shared/page.service';
+import { AlertService } from '../shared/alert/alert.service';
 
 @Component({
   selector: 'app-pad',
@@ -17,12 +18,15 @@ export class PadComponent implements OnInit, OnDestroy {
   activeTaskIndexOnPage: number;
   paramsSubscription: Subscription;
   taskChangedSubscription: Subscription;
+  alertSubscription: Subscription;
   pageIndex: number;
+  alertMessage: string;
 
   constructor(private padService: PadService,
               private pageService: PageService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.paramsSubscription = this.route.params
@@ -40,8 +44,13 @@ export class PadComponent implements OnInit, OnDestroy {
 
     this.taskChangedSubscription = this.padService.tasksChanged
       .subscribe(() => {
-      this.initializePage(this.pageIndex);
-    });
+        this.initializePage(this.pageIndex);
+      });
+
+    this.alertSubscription = this.alertService.newAlert
+      .subscribe((message) => {
+        this.alertMessage = message;
+      });
   }
 
   getStatusClasses(task: Task, index: number) {
@@ -57,8 +66,13 @@ export class PadComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.paramsSubscription.unsubscribe();
     this.taskChangedSubscription.unsubscribe();
+    this.alertSubscription.unsubscribe();
     this.pageService.clearOpenedPage();
     this.pageService.clearSelectedTask();
+  }
+
+  onAlertClose() {
+    this.alertMessage = null;
   }
 
   private initializePage(pageIndex: number) {

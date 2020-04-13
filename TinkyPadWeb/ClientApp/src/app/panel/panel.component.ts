@@ -20,11 +20,17 @@ export class PanelComponent {
   }
 
   onChoose() {
+    if (!this.chooseTaskAvailable()) {
+      return;
+    }
+    
     const restriction = this.panelService.checkRestrictionToChoose();
     if (restriction) {
       this.alertService.showAlert(restriction);
       return;
     }
+
+    this.panelService.chooseSelectedTask();
   }
 
   onComplete() {

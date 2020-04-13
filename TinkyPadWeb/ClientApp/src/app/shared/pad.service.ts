@@ -14,6 +14,11 @@ export class PadService {
     this.pad = this.tasksProviderService.getPad();
   }
 
+  setActiveTask(taskIndexOnPage: number) {
+    this.pad.setActiveTaskByIndexOnPage(taskIndexOnPage);
+    this.notifyTasksChanged();
+  }
+
   getActiveTask(): Task {
     return this.pad.getActiveTask();
   }
@@ -24,6 +29,10 @@ export class PadService {
 
   getTasksFromActivePage(): Task[] {
     return this.pad.getTasksFromActivePage();
+  }
+
+  getTaskFromActivePage(taskIndexOnPage: number): Task {
+    return this.pad.getTasksFromActivePage()[taskIndexOnPage];
   }
 
   getTasksFromPage(pageIndex: number): Task[] {

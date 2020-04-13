@@ -41,6 +41,11 @@ export class Pad {
     }
   }
 
+  setActiveTaskByIndexOnPage(taskIndexOnPage: number) {
+    const globalTaskIndex = this.tasksOnPage * this.getActivePageIndex() + taskIndexOnPage;
+    this.setActiveTaskIndex(globalTaskIndex);
+  }
+
   getActivePageIndex(): number {
     return this.activePageIndex;
   }

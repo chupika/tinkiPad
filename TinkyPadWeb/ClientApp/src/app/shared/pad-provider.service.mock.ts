@@ -20,7 +20,7 @@ export class PadProviderServiceMock {
       pad.pushTask(task);
     }
 
-    pad.setActiveTaskIndex(activeTaskIndex);
+    //pad.setActiveTaskIndex(activeTaskIndex);
 
     return pad;
   }

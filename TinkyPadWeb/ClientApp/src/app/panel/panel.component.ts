@@ -34,7 +34,7 @@ export class PanelComponent {
   }
 
   onComplete() {
-
+    
   }
 
   onInterrupt() {
@@ -47,5 +47,9 @@ export class PanelComponent {
 
   chooseTaskAvailable() {
     return this.panelService.isChooseAvailable();
+  }
+
+  completeTaskAvailable() {
+    return this.panelService.isCompleteTaskAvailable();
   }
 }

@@ -11,6 +11,10 @@ export class PanelService {
     return this.pageService.selectedTaskIndexOnPage != null;
   }
 
+  isCompleteTaskAvailable() {
+    return this.padService.isActiveTaskChosen();
+  }
+
   checkRestrictionToChoose() {
     if (this.padService.isActiveTaskChosen()) {
       return 'Active task is alread chosen. Complete it or interrupt, if you want to start another one.';

@@ -84,6 +84,12 @@ export class PadService {
     return pageCount;
   }
 
+  completeTask() {
+    this.pad.getActiveTask().isCompleted = true;
+    this.pad.setActiveTaskIndex(-1);
+    this.notifyTasksChanged();
+  }
+
   private notifyTasksChanged() {
     this.tasksChanged.next();
   }

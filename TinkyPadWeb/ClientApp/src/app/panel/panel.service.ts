@@ -35,4 +35,8 @@ export class PanelService {
     const selectedTaskIndexOnPage = this.pageService.selectedTaskIndexOnPage;
     this.padService.setActiveTask(selectedTaskIndexOnPage);
   }
+
+  completeTask() {
+    this.padService.completeTask();
+  }
 }

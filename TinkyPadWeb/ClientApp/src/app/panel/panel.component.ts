@@ -34,7 +34,7 @@ export class PanelComponent {
   }
 
   onComplete() {
-    
+    this.panelService.completeTask();
   }
 
   onInterrupt() {

@@ -62,4 +62,11 @@ export class Pad {
     const taskIndexStart = pageIndex * this.tasksOnPage;
     return this.tasks.slice(taskIndexStart, taskIndexStart + this.tasksOnPage);
   }
+
+  setActivePageIndex(pageIndex: number) {
+    const pageCount = Math.floor(this.tasks.length / this.tasksOnPage) + 1;
+    if (pageIndex < pageCount) {
+      this.activePageIndex = pageIndex;
+    }
+  }
 }

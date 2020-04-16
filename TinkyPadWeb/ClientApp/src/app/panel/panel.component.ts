@@ -42,7 +42,9 @@ export class PanelComponent {
   }
 
   onTurnThePage() {
-
+    this.panelService.turnThePage();
+    const nextActivePageIndex = this.panelService.getActivePageIndex();
+    this.router.navigate([nextActivePageIndex]);
   }
 
   chooseTaskAvailable() {

@@ -99,6 +99,10 @@ export class PadService {
     this.notifyTasksChanged();
   }
 
+  setActivePage(pageIndex: number) {
+    this.pad.setActivePageIndex(pageIndex);
+  }
+
   private notifyTasksChanged() {
     this.tasksChanged.next();
   }

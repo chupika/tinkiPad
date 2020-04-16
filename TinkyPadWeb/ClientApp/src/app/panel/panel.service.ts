@@ -43,4 +43,12 @@ export class PanelService {
   interruptTask() {
     this.padService.interruptTask();
   }
+
+  turnThePage() {
+    this.pageService.setNextActivePage();
+  }
+
+  getActivePageIndex() {
+    return this.padService.getActivePageIndex();
+  }
 }

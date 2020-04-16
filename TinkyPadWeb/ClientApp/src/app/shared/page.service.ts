@@ -36,4 +36,21 @@ export class PageService {
   clearSelectedTask() {
     this._selectedTaskIndexOnPage = null;
   }
+
+  setNextActivePage() {
+    const pageCount = this.padService.getPageCount();
+    const currentActivePageIndex = this.padService.getActivePageIndex();
+    
+    let nextPageIndex = currentActivePageIndex;
+
+    do {
+      nextPageIndex = (nextPageIndex + 1) % pageCount;
+      const tasksFromNextPage = this.padService.getTasksFromPage(nextPageIndex);
+      const anyIncompletedTasks = tasksFromNextPage.some(task => !task.isCompleted);
+      if (anyIncompletedTasks) {
+        this.padService.setActivePage(nextPageIndex);
+        break;
+      }
+    } while(nextPageIndex != currentActivePageIndex);
+  }
 }

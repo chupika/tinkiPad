@@ -38,7 +38,7 @@ export class PanelComponent {
   }
 
   onInterrupt() {
-
+    this.panelService.interruptTask();
   }
 
   onTurnThePage() {

@@ -7,4 +7,8 @@ export class Task {
     this.name = name;
     this.description = description;
   }
+
+  cloneTask() {
+    return new Task(this.name, this.description);
+  }
 }

@@ -90,6 +90,15 @@ export class PadService {
     this.notifyTasksChanged();
   }
 
+  interruptTask() {
+    const activeTask = this.pad.getActiveTask();
+    const clonedTask = activeTask.cloneTask();
+    activeTask.isCompleted = true;
+    this.pad.setActiveTaskIndex(-1);
+    this.pad.pushTask(clonedTask);
+    this.notifyTasksChanged();
+  }
+
   private notifyTasksChanged() {
     this.tasksChanged.next();
   }

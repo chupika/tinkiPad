@@ -39,4 +39,8 @@ export class PanelService {
   completeTask() {
     this.padService.completeTask();
   }
+
+  interruptTask() {
+    this.padService.interruptTask();
+  }
 }

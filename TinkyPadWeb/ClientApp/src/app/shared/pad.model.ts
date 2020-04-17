@@ -6,6 +6,7 @@ export class Pad {
   
   private activeTaskIndex = -1;
   private activePageIndex = 0;
+  private _anyTaskChosenOnThisTurn = false;
 
   constructor() { }
 
@@ -35,6 +36,7 @@ export class Pad {
     }
 
     this.activeTaskIndex = index;
+    this._anyTaskChosenOnThisTurn = true;
 
     if (index != -1) {
       this.activePageIndex = Math.floor(index / this.tasksOnPage);
@@ -64,9 +66,18 @@ export class Pad {
   }
 
   setActivePageIndex(pageIndex: number) {
+    if (this.activePageIndex == pageIndex) {
+      return;
+    }
+
     const pageCount = Math.floor(this.tasks.length / this.tasksOnPage) + 1;
     if (pageIndex < pageCount) {
       this.activePageIndex = pageIndex;
+      this._anyTaskChosenOnThisTurn = false;
     }
+  }
+
+  get anyTaskChosenOnThisTurn() {
+    return this._anyTaskChosenOnThisTurn;
   }
 }

@@ -51,4 +51,8 @@ export class PanelService {
   getActivePageIndex() {
     return this.padService.getActivePageIndex();
   }
+
+  anyTaskChosenOnThisTurn() {
+    return this.padService.anyTasksChosenOnThisTurn();
+  }
 }

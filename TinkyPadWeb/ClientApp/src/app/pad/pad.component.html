@@ -1,7 +1,9 @@
 <div *ngIf="alertMessage">
   <app-alert
     (close)="onAlertClose()"
+    (okAnswer)="onOkAnswer()"
     [message]="[alertMessage]"
+    [isOkCancelQuestion]="[isOkCancelQuestion]"
     ></app-alert>
 </div>
 <app-header></app-header>

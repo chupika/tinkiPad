@@ -21,6 +21,7 @@ export class PadComponent implements OnInit, OnDestroy {
   alertSubscription: Subscription;
   pageIndex: number;
   alertMessage: string;
+  isOkCancelQuestion: boolean;
 
   constructor(private padService: PadService,
               private pageService: PageService,
@@ -48,8 +49,9 @@ export class PadComponent implements OnInit, OnDestroy {
       });
 
     this.alertSubscription = this.alertService.newAlert
-      .subscribe((message) => {
-        this.alertMessage = message;
+      .subscribe((alertInfo) => {
+        this.alertMessage = alertInfo.message;
+        this.isOkCancelQuestion = alertInfo.isQuestion;
       });
   }
 
@@ -73,6 +75,11 @@ export class PadComponent implements OnInit, OnDestroy {
 
   onAlertClose() {
     this.alertMessage = null;
+  }
+
+  onOkAnswer() {
+    this.alertMessage = null;
+    this.alertService.onOkAnswer();
   }
 
   private initializePage(pageIndex: number) {

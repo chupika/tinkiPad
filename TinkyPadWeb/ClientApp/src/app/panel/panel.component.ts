@@ -42,6 +42,11 @@ export class PanelComponent {
   }
 
   onTurnThePage() {
+    if (!this.panelService.anyTaskChosenOnThisTurn()) {
+      this.showKillPageDialog();
+      return;
+    }
+
     this.panelService.turnThePage();
     const nextActivePageIndex = this.panelService.getActivePageIndex();
     this.router.navigate([nextActivePageIndex]);
@@ -53,5 +58,17 @@ export class PanelComponent {
 
   completeTaskAvailable() {
     return this.panelService.isCompleteTaskAvailable();
+  }
+
+  showKillPageDialog() {
+    const killPageQuestion = 'You cannont turn this page because you have not chosen any task to do on this turn. '
+      + 'But if you want turn this page anyway you have to complete all tasks on the current active page. '
+      + 'Complete all tasks on current active page?';
+
+    this.alertService.showQuestion(killPageQuestion, this.killPage);
+  }
+
+  killPage() {
+    console.log('kill page');
   }
 }

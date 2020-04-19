@@ -103,6 +103,10 @@ export class PadService {
     this.pad.setActivePageIndex(pageIndex);
   }
 
+  anyTasksChosenOnThisTurn() {
+    return this.pad.anyTaskChosenOnThisTurn;
+  }
+
   private notifyTasksChanged() {
     this.tasksChanged.next();
   }

@@ -11,10 +11,16 @@ import {
 })
 export class AlertComponent {
   @Output() close = new EventEmitter<void>();
+  @Output() okAnswer = new EventEmitter<void>();
   @Input() message: string = null;
+  @Input() isOkCancelQuestion = false;
 
   onClose() {
     this.close.emit();
+  }
+
+  onOkAnswer() {
+    this.okAnswer.emit();
   }
 
 }

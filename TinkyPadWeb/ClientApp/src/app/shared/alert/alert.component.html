@@ -2,6 +2,14 @@
 <div class="alert-box">
   <p>{{ message }}</p>
   <div class="alert-box-actions">
-    <button class="btn btn-primary" (click)="onClose()">Close</button>
+    <button
+      class="btn btn-primary"
+      (click)="onOkAnswer()"
+      *ngIf="isOkCancelQuestion"
+      >Ok</button>
+    <button
+      class="btn btn-secondary"
+      (click)="onClose()"
+      >{{isOkCancelQuestion ? 'Cancel' : 'Close'}}</button>
   </div>
 </div>

@@ -107,6 +107,11 @@ export class PadService {
     return this.pad.anyTaskChosenOnThisTurn;
   }
 
+  completeAllTasksOnActivePage() {
+    const tasksFromActivePage = this.getTasksFromActivePage();
+    tasksFromActivePage.forEach(task => task.isCompleted = true);
+  }
+
   private notifyTasksChanged() {
     this.tasksChanged.next();
   }

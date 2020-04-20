@@ -47,9 +47,7 @@ export class PanelComponent {
       return;
     }
 
-    this.panelService.turnThePage();
-    const nextActivePageIndex = this.panelService.getActivePageIndex();
-    this.router.navigate([nextActivePageIndex]);
+    this.activateNextPage();
   }
 
   chooseTaskAvailable() {
@@ -65,10 +63,17 @@ export class PanelComponent {
       + 'But if you want turn this page anyway you have to complete all tasks on the current active page. '
       + 'Complete all tasks on current active page?';
 
-    this.alertService.showQuestion(killPageQuestion, this.killPage);
+    this.alertService.showQuestion(killPageQuestion, this.killPage.bind(this));
   }
 
   killPage() {
-    console.log('kill page');
+    this.panelService.killPage();
+    this.activateNextPage();    
+  }
+
+  private activateNextPage() {
+    this.panelService.turnThePage();
+    const nextActivePageIndex = this.panelService.getActivePageIndex();
+    this.router.navigate([nextActivePageIndex]);
   }
 }

@@ -47,6 +47,12 @@ export class PanelComponent {
       return;
     }
 
+    if (this.panelService.taskChosen()) {
+      const alertMessage = "You cannot turn the page because task is in progress. Complete task before activating new page";
+      this.alertService.showAlert(alertMessage);
+      return;
+    }
+
     this.activateNextPage();
   }
 

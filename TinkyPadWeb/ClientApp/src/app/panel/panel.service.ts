@@ -59,4 +59,8 @@ export class PanelService {
   killPage() {
     this.padService.completeAllTasksOnActivePage();
   }
+
+  taskChosen() {
+    return !!this.padService.getActiveTask();
+  }
 }

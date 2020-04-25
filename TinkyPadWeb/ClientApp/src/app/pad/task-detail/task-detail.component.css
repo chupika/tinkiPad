@@ -1,3 +1,7 @@
 h3, span {
   overflow-wrap: break-word;
 }
+
+span {
+  white-space: pre-wrap;
+}

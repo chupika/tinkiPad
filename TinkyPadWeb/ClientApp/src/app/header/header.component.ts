@@ -15,6 +15,12 @@ export class HeaderComponent implements OnInit {
     if (this.padService.isActiveTaskChosen()) {
       this.activeTaskName = this.padService.getActiveTask().name;
     }
-  }
 
+    this.padService.tasksChanged.subscribe(() => {
+      const newActiveTaskName = this.padService.getActiveTask().name;
+      if (this.activeTaskName !== newActiveTaskName) {
+        this.activeTaskName = newActiveTaskName;
+      }
+    })
+  }
 }

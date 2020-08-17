@@ -7,9 +7,11 @@ import { TaskDetailComponent } from './pad/task-detail/task-detail.component';
 import { ActiveTaskComponent } from './active-task/active-task.component';
 import { PadComponent } from './pad/pad.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { AuthComponent } from './auth/auth.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/active-task', pathMatch: 'full' },
+  { path: 'auth', component: AuthComponent },
   { path: 'active-task', component: ActiveTaskComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
   { path: 'new', component: TaskEditorComponent },

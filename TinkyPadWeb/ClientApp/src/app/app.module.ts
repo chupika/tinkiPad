@@ -19,7 +19,8 @@ import { PadProviderServiceMock } from './shared/pad-provider.service.mock';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { PanelService } from './panel/panel.service';
 import { AlertService } from './shared/alert/alert.service';
-import { AlertComponent } from './shared/alert/alert.component';
+import { AlertComponent } from './shared/alert/alert.component';;
+import { AuthComponent } from './auth/auth.component'
 
 @NgModule({
     imports: [
@@ -39,7 +40,8 @@ import { AlertComponent } from './shared/alert/alert.component';
         PanelComponent,
         TaskPlaceholderComponent,
         PageNotFoundComponent,
-        AlertComponent
+        AlertComponent,
+        AuthComponent
     ],
     providers: [
         PadService,
